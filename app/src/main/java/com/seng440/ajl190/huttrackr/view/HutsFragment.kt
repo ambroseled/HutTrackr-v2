@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.repository.HutRespository
 import com.seng440.ajl190.huttrackr.utils.DocApi
+import com.seng440.ajl190.huttrackr.utils.GridSpacingItemDecoration
 import com.seng440.ajl190.huttrackr.utils.HutRecyclerAdapter
 import com.seng440.ajl190.huttrackr.utils.HutViewModelFactory
 import com.seng440.ajl190.huttrackr.viewmodel.HutsViewModel
@@ -37,9 +39,10 @@ class HutsFragment : Fragment() {
         viewModel.getHuts()
         viewModel.huts.observe(viewLifecycleOwner, Observer {huts ->
             recycler_view_huts.also {
-                it.layoutManager = LinearLayoutManager(requireContext())
+                it.layoutManager = GridLayoutManager(requireContext(), 2)
                 it.setHasFixedSize(true)
                 it.adapter = HutRecyclerAdapter(huts)
+                it.addItemDecoration( GridSpacingItemDecoration(2, 20, true))
             }
 
         })
