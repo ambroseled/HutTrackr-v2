@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -12,9 +12,11 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:clickable="true"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="8dp"
-        app:contentPadding="4dp">
+        app:contentPadding="4dp"
+        android:outlineAmbientShadowColor="@color/colorAccent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
