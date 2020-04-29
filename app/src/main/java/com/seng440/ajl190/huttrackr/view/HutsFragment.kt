@@ -1,7 +1,6 @@
 package com.seng440.ajl190.huttrackr.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +13,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.model.HutResponse
 import com.seng440.ajl190.huttrackr.repository.HutRepository
-import com.seng440.ajl190.huttrackr.utils.*
+import com.seng440.ajl190.huttrackr.utils.api.DocApi
+import com.seng440.ajl190.huttrackr.utils.factory.HutViewModelFactory
+import com.seng440.ajl190.huttrackr.utils.recyclerView.GridSpacingItemDecoration
+import com.seng440.ajl190.huttrackr.utils.recyclerView.HutListClickListener
+import com.seng440.ajl190.huttrackr.utils.recyclerView.HutRecyclerAdapter
 import com.seng440.ajl190.huttrackr.viewmodel.HutsViewModel
 import kotlinx.android.synthetic.main.huts_fragment.*
 
-class HutsFragment : Fragment(), HutListClickListener {
+class HutsFragment : Fragment(),
+    HutListClickListener {
 
     private lateinit var viewModelFactory: HutViewModelFactory
     private lateinit var viewModel: HutsViewModel
@@ -34,15 +38,23 @@ class HutsFragment : Fragment(), HutListClickListener {
         super.onActivityCreated(savedInstanceState)
         val api = DocApi()
         val hutsRepository = HutRepository(api)
-        viewModelFactory = HutViewModelFactory(hutsRepository)
+        viewModelFactory =
+            HutViewModelFactory(hutsRepository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(HutsViewModel::class.java)
         viewModel.getHuts()
         viewModel.huts.observe(viewLifecycleOwner, Observer {huts ->
             recycler_view_huts.also {
                 it.layoutManager = GridLayoutManager(requireContext(), 2)
                 it.setHasFixedSize(true)
-                it.adapter = HutRecyclerAdapter(huts, this)
-                it.addItemDecoration( GridSpacingItemDecoration(2, 20, true))
+                it.adapter =
+                    HutRecyclerAdapter(huts, this)
+                it.addItemDecoration(
+                    GridSpacingItemDecoration(
+                        2,
+                        20,
+                        true
+                    )
+                )
             }
 
         })

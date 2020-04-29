@@ -3,4 +3,6 @@
     <string name="visitButton">Add Visit</string>
     <string name="detailsButton">View Details</string>
     <string name="wishlist">Wishlist</string>
+    <string name="huts">Huts</string>
+    <string name="tracks">Tracks</string>
 </resources>

@@ -1,8 +1,6 @@
-package com.seng440.ajl190.huttrackr.utils
+package com.seng440.ajl190.huttrackr.utils.api
 
 import com.seng440.ajl190.huttrackr.model.HutResponse
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

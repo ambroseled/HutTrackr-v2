@@ -10,4 +10,9 @@
         android:name="com.seng440.ajl190.huttrackr.view.HutsFragment"
         android:label="huts_fragment"
         tools:layout="@layout/huts_fragment" />
+    <fragment
+        android:id="@+id/tracksFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.TracksFragment"
+        android:label="tracks_fragment"
+        tools:layout="@layout/tracks_fragment" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.seng440.ajl190.huttrackr.utils
+package com.seng440.ajl190.huttrackr.utils.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

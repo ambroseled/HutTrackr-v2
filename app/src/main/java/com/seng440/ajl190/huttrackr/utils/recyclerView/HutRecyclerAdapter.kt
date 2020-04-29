@@ -1,4 +1,4 @@
-package com.seng440.ajl190.huttrackr.utils
+package com.seng440.ajl190.huttrackr.utils.recyclerView
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

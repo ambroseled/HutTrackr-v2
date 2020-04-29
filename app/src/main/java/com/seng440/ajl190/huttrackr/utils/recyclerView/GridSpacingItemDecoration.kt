@@ -1,4 +1,4 @@
-package com.seng440.ajl190.huttrackr.utils
+package com.seng440.ajl190.huttrackr.utils.recyclerView
 
 import android.graphics.Rect
 import android.view.View
