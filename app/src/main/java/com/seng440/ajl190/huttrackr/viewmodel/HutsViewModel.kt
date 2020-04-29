@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.seng440.ajl190.huttrackr.model.HutResponse
-import com.seng440.ajl190.huttrackr.repository.HutRespository
+import com.seng440.ajl190.huttrackr.repository.HutRepository
 import com.seng440.ajl190.huttrackr.utils.CoroutineHelper
 import kotlinx.coroutines.Job
 
 class HutsViewModel(
-    private val hutRespository: HutRespository
+    private val hutRepository: HutRepository
 ) : ViewModel() {
 
     private lateinit var job: Job
@@ -19,7 +19,7 @@ class HutsViewModel(
 
     fun getHuts() {
         job = CoroutineHelper.ioThenMain(
-            {hutRespository.getHuts()},
+            {hutRepository.getHuts()},
             {_huts.value = it}
         )
     }
