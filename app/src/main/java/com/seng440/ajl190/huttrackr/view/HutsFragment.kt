@@ -9,22 +9,23 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.model.HutResponse
 import com.seng440.ajl190.huttrackr.repository.HutRepository
 import com.seng440.ajl190.huttrackr.utils.api.DocApi
-import com.seng440.ajl190.huttrackr.utils.factory.HutViewModelFactory
-import com.seng440.ajl190.huttrackr.utils.recyclerView.GridSpacingItemDecoration
-import com.seng440.ajl190.huttrackr.utils.recyclerView.HutListClickListener
-import com.seng440.ajl190.huttrackr.utils.recyclerView.HutRecyclerAdapter
+import com.seng440.ajl190.huttrackr.utils.factory.HutsViewModelFactory
+import com.seng440.ajl190.huttrackr.utils.decorator.GridSpacingItemDecoration
+import com.seng440.ajl190.huttrackr.utils.listener.HutListClickListener
+import com.seng440.ajl190.huttrackr.utils.Adapter.HutRecyclerAdapter
 import com.seng440.ajl190.huttrackr.viewmodel.HutsViewModel
 import kotlinx.android.synthetic.main.huts_fragment.*
 
 class HutsFragment : Fragment(),
     HutListClickListener {
 
-    private lateinit var viewModelFactory: HutViewModelFactory
+    private lateinit var viewModelFactory: HutsViewModelFactory
     private lateinit var viewModel: HutsViewModel
 
     override fun onCreateView(
@@ -39,7 +40,7 @@ class HutsFragment : Fragment(),
         val api = DocApi()
         val hutsRepository = HutRepository(api)
         viewModelFactory =
-            HutViewModelFactory(hutsRepository)
+            HutsViewModelFactory(hutsRepository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(HutsViewModel::class.java)
         viewModel.getHuts()
         viewModel.huts.observe(viewLifecycleOwner, Observer {huts ->
@@ -71,6 +72,10 @@ class HutsFragment : Fragment(),
 
     override fun onMoreInfoClick(hut: HutResponse) {
         Toast.makeText(requireContext(), "More info for ${hut.name} clicked", Toast.LENGTH_SHORT).show()
+
+        val navController = this.findNavController()
+        val action = HutsFragmentDirections.actionHutsFragmentToHutFragment(hut.assetId)
+        navController.navigate(action)
     }
 
 

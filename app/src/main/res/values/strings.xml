@@ -5,4 +5,5 @@
     <string name="wishlist">Wishlist</string>
     <string name="huts">Huts</string>
     <string name="tracks">Tracks</string>
+    <string name="hutName">Hut Name</string>
 </resources>

@@ -8,4 +8,6 @@ class HutRepository(
 ) : DocApiRequest() {
 
     suspend fun getHuts() = apiRequest {api.getHuts()}
+
+    suspend fun getHut(assetId: Int) = apiRequest { api.getHut(assetId)}
 }

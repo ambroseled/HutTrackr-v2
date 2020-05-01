@@ -9,7 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.seng440.ajl190.huttrackr.R
 import kotlinx.android.synthetic.main.activity_huts.*
 
-class HutsActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 

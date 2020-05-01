@@ -1,4 +1,4 @@
-package com.seng440.ajl190.huttrackr.utils.recyclerView
+package com.seng440.ajl190.huttrackr.utils.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.databinding.HutListItemBinding
 import com.seng440.ajl190.huttrackr.model.HutResponse
+import com.seng440.ajl190.huttrackr.utils.listener.HutListClickListener
 
 class HutRecyclerAdapter (
     private val huts: List<HutResponse>,
