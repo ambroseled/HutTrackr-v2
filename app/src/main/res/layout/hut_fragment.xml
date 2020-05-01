@@ -40,7 +40,8 @@
                 android:id="@+id/detailedHutImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:src="@tools:sample/avatars" />
+                tools:src="@tools:sample/avatars"
+                app:imageUrl="@{hut.introductionThumbnail}"/>
         </LinearLayout> <!-- Image by <a href="https://pixabay.com/users/kewl-24755/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=90388">kewl</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=90388">Pixabay</a> -->
 
         <ScrollView

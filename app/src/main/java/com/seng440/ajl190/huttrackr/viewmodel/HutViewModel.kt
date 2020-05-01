@@ -1,8 +1,12 @@
 package com.seng440.ajl190.huttrackr.viewmodel
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.seng440.ajl190.huttrackr.model.Hut
 import com.seng440.ajl190.huttrackr.repository.HutRepository
 import com.seng440.ajl190.huttrackr.utils.CoroutineHelper
@@ -34,6 +38,19 @@ class HutViewModel(
         super.onCleared()
         if (::job.isInitialized) job.cancel()
     }
+
+    companion object {
+        @BindingAdapter("imageUrl")
+        @JvmStatic
+        fun loadImage(view: ImageView, imageUrl: String?) {
+            if (!imageUrl.isNullOrEmpty()) {
+                Glide.with(view.context)
+                    .load(imageUrl)
+                    .into(view)
+            }
+        }
+    }
+
 
 
 }
