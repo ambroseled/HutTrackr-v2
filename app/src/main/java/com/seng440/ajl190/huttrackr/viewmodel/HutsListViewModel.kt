@@ -8,7 +8,7 @@ import com.seng440.ajl190.huttrackr.repository.HutRepository
 import com.seng440.ajl190.huttrackr.utils.CoroutineHelper
 import kotlinx.coroutines.Job
 
-class HutsViewModel(
+class HutsListViewModel(
     private val hutRepository: HutRepository
 ) : ViewModel() {
 

@@ -6,17 +6,13 @@
     app:startDestination="@id/hutsFragment">
 
     <fragment
-        android:id="@+id/hutsFragment"
-        android:name="com.seng440.ajl190.huttrackr.view.HutsFragment"
-        android:label="huts_fragment"
-        tools:layout="@layout/huts_fragment" >
-        <action
-            android:id="@+id/action_hutsFragment_to_tracksFragment"
-            app:destination="@id/tracksFragment" />
+        android:id="@+id/hutsListFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.HutsListFragment"
+        android:label="huts_list_fragment"
+        tools:layout="@layout/huts_list_fragment">
         <action
             android:id="@+id/action_hutsFragment_to_hutFragment"
-            app:destination="@id/hutFragment"
-             />
+            app:destination="@id/hutFragment" />
     </fragment>
     <fragment
         android:id="@+id/tracksFragment"
@@ -32,6 +28,15 @@
             android:name="assetId"
             app:argType="integer"
              />
+    </fragment>
+    <fragment
+        android:id="@+id/hutsFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.HutsFragment"
+        android:label="huts_fragment"
+        tools:layout="@layout/huts_fragment" >
+        <action
+            android:id="@+id/action_hutsFragment_to_tracksFragment"
+            app:destination="@id/tracksFragment" />
     </fragment>
 
 

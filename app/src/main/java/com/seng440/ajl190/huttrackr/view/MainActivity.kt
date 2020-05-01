@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_huts)
 
-        navController = Navigation.findNavController(this, R.id.hutsFragment)
+        navController = Navigation.findNavController(this, R.id.hutsListFragment)
 
         bottomNav.setupWithNavController(navController)
 
