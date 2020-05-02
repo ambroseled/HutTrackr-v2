@@ -16,10 +16,10 @@ import com.seng440.ajl190.huttrackr.model.HutResponse
 import com.seng440.ajl190.huttrackr.repository.HutRepository
 import com.seng440.ajl190.huttrackr.utils.api.DocApi
 import com.seng440.ajl190.huttrackr.utils.decorator.GridSpacingItemDecoration
-import com.seng440.ajl190.huttrackr.utils.factory.HutsListViewModelFactory
 import com.seng440.ajl190.huttrackr.utils.listener.HutListClickListener
 import com.seng440.ajl190.huttrackr.view.adpater.HutsRecyclerAdapter
 import com.seng440.ajl190.huttrackr.viewmodel.HutsListViewModel
+import com.seng440.ajl190.huttrackr.viewmodel.factory.HutsListViewModelFactory
 import kotlinx.android.synthetic.main.huts_list_fragment.*
 
 class HutsListFragment : Fragment(), HutListClickListener {

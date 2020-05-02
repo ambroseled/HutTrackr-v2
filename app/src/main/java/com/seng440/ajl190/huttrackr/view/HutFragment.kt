@@ -1,21 +1,17 @@
 package com.seng440.ajl190.huttrackr.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.seng440.ajl190.huttrackr.viewmodel.HutViewModel
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
 import com.seng440.ajl190.huttrackr.repository.HutRepository
 import com.seng440.ajl190.huttrackr.utils.api.DocApi
-import com.seng440.ajl190.huttrackr.utils.factory.HutViewModelFactory
+import com.seng440.ajl190.huttrackr.viewmodel.HutViewModel
+import com.seng440.ajl190.huttrackr.viewmodel.factory.HutViewModelFactory
 
 
 class HutFragment : Fragment() {
@@ -40,7 +36,8 @@ class HutFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val api = DocApi()
         val repository = HutRepository(api)
-        viewModelFactory = HutViewModelFactory(repository)
+        viewModelFactory =
+            HutViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(HutViewModel::class.java)
         assetId = arguments?.getInt("assetId")
 
