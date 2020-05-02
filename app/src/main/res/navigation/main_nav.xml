@@ -11,7 +11,7 @@
         android:label="huts_list_fragment"
         tools:layout="@layout/huts_list_fragment">
         <action
-            android:id="@+id/action_hutsFragment_to_hutFragment"
+            android:id="@+id/action_hutsListFragment_to_hutFragment"
             app:destination="@id/hutFragment" />
     </fragment>
     <fragment
@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_hutsFragment_to_tracksFragment"
             app:destination="@id/tracksFragment" />
+        <action
+            android:id="@+id/action_hutsFragment_to_hutFragment"
+            app:destination="@id/hutFragment" />
     </fragment>
 
 

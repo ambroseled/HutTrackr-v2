@@ -1,12 +1,12 @@
 package com.seng440.ajl190.huttrackr.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -15,15 +15,14 @@ import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.model.HutResponse
 import com.seng440.ajl190.huttrackr.repository.HutRepository
 import com.seng440.ajl190.huttrackr.utils.api.DocApi
-import com.seng440.ajl190.huttrackr.utils.factory.HutsListViewModelFactory
 import com.seng440.ajl190.huttrackr.utils.decorator.GridSpacingItemDecoration
+import com.seng440.ajl190.huttrackr.utils.factory.HutsListViewModelFactory
 import com.seng440.ajl190.huttrackr.utils.listener.HutListClickListener
-import com.seng440.ajl190.huttrackr.utils.Adapter.HutRecyclerAdapter
+import com.seng440.ajl190.huttrackr.view.adpater.HutsRecyclerAdapter
 import com.seng440.ajl190.huttrackr.viewmodel.HutsListViewModel
 import kotlinx.android.synthetic.main.huts_list_fragment.*
 
-class HutsListFragment : Fragment(),
-    HutListClickListener {
+class HutsListFragment : Fragment(), HutListClickListener {
 
     private lateinit var viewModelFactory: HutsListViewModelFactory
     private lateinit var viewModel: HutsListViewModel
@@ -48,7 +47,7 @@ class HutsListFragment : Fragment(),
                 it.layoutManager = GridLayoutManager(requireContext(), 2)
                 it.setHasFixedSize(true)
                 it.adapter =
-                    HutRecyclerAdapter(huts, this)
+                    HutsRecyclerAdapter(huts, this)
                 it.addItemDecoration(
                     GridSpacingItemDecoration(
                         2,
@@ -74,7 +73,7 @@ class HutsListFragment : Fragment(),
         Toast.makeText(requireContext(), "More info for ${hut.name} clicked", Toast.LENGTH_SHORT).show()
 
         val navController = this.findNavController()
-        val action = HutsListFragmentDirections.actionHutsFragmentToHutFragment(hut.assetId)
+        val action = HutsFragmentDirections.actionHutsFragmentToHutFragment(hut.assetId)
         navController.navigate(action)
     }
 

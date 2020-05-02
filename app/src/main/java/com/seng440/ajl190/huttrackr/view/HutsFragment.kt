@@ -1,33 +1,68 @@
 package com.seng440.ajl190.huttrackr.view
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.view.animation.AnimationUtils
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 import com.seng440.ajl190.huttrackr.R
+import com.seng440.ajl190.huttrackr.model.HutResponse
+import com.seng440.ajl190.huttrackr.utils.listener.HutListClickListener
+import com.seng440.ajl190.huttrackr.view.adpater.HutTabAdapter
+import com.seng440.ajl190.huttrackr.viewmodel.HutsViewModel
 
-class HutsFragment : Fragment() {
+class HutsFragment : Fragment(), HutListClickListener {
 
-    companion object {
-        fun newInstance() = HutsFragment()
-    }
 
     private lateinit var viewModel: HutsViewModel
+    private lateinit var tabLayout: TabLayout
+    private lateinit var viewPager: ViewPager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.huts_fragment, container, false)
+        val view = inflater.inflate(R.layout.huts_fragment, container, false)
+        tabLayout = view.findViewById(R.id.hutsTabLayout)
+        viewPager = view.findViewById(R.id.hutsTabPager)
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(HutsViewModel::class.java)
-        // TODO: Use the ViewModel
+
+
+        val tabAdapter = HutTabAdapter(
+            requireContext(),
+            this.parentFragmentManager
+        )
+        viewPager.adapter = tabAdapter
+
+        tabLayout.setupWithViewPager(viewPager)
+    }
+
+    override fun onWishListClick(hut: HutResponse) {
+        Toast.makeText(requireContext(), "Wish list toggle for ${hut.name}", Toast.LENGTH_SHORT).show()
+        //todo Implement wish list saving functionality
+    }
+
+    override fun onHutCardClick(hut: HutResponse, view: View) {
+        view.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.bounce))
+    }
+
+    override fun onMoreInfoClick(hut: HutResponse) {
+        Toast.makeText(requireContext(), "More info for ${hut.name} clicked", Toast.LENGTH_SHORT).show()
+
+        val navController = this.findNavController()
+        val action = HutsFragmentDirections.actionHutsFragmentToHutFragment(hut.assetId)
+        navController.navigate(action)
     }
 
 }

@@ -1,4 +1,4 @@
-package com.seng440.ajl190.huttrackr.utils.Adapter
+package com.seng440.ajl190.huttrackr.view.adpater
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,10 +9,10 @@ import com.seng440.ajl190.huttrackr.databinding.HutListItemBinding
 import com.seng440.ajl190.huttrackr.model.HutResponse
 import com.seng440.ajl190.huttrackr.utils.listener.HutListClickListener
 
-class HutRecyclerAdapter (
+class HutsRecyclerAdapter (
     private val huts: List<HutResponse>,
     private val listClickListener: HutListClickListener
-) : RecyclerView.Adapter<HutRecyclerAdapter.HutRecyclerViewHolder>() {
+) : RecyclerView.Adapter<HutsRecyclerAdapter.HutRecyclerViewHolder>() {
 
     override fun getItemCount() = huts.size
 
