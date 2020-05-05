@@ -15,10 +15,23 @@
         android:layout_height="match_parent"
         tools:context=".view.HutFragment" >
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:src="@drawable/ic_hands_and_gestures"
+            app:borderWidth="0.5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="32dp" />
+
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@+id/bannerLayout"
             android:layout_width="414dp"
-            android:layout_height="242dp"
+            android:layout_height="202dp"
             android:background="@drawable/hut_background"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,26 +56,8 @@
                 app:imageUrl="@{hut.introductionThumbnail}"
                 tools:src="@tools:sample/avatars" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"/>
-
         </LinearLayout> <!-- Image by <a href="https://pixabay.com/users/kewl-24755/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=90388">kewl</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=90388">Pixabay</a> -->
 
-        <ScrollView
-            android:layout_width="413dp"
-            android:layout_height="495dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
