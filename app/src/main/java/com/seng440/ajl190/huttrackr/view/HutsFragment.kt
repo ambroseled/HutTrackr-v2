@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.seng440.ajl190.huttrackr.R
-import com.seng440.ajl190.huttrackr.model.HutResponse
+import com.seng440.ajl190.huttrackr.data.model.HutResponse
 import com.seng440.ajl190.huttrackr.utils.listener.HutListClickListener
 import com.seng440.ajl190.huttrackr.view.adpater.HutTabAdapter
 import com.seng440.ajl190.huttrackr.viewmodel.HutsViewModel

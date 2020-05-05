@@ -1,4 +1,4 @@
-package com.seng440.ajl190.huttrackr.model
+package com.seng440.ajl190.huttrackr.data.model
 
 data class Hut(
     val assetId: Int,

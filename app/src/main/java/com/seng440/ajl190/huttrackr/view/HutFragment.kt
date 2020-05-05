@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.seng440.ajl190.huttrackr.data.api.DocApiService
+import com.seng440.ajl190.huttrackr.data.repository.HutRepository
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
-import com.seng440.ajl190.huttrackr.repository.HutRepository
-import com.seng440.ajl190.huttrackr.utils.api.DocApi
 import com.seng440.ajl190.huttrackr.viewmodel.HutViewModel
 import com.seng440.ajl190.huttrackr.viewmodel.factory.HutViewModelFactory
 
@@ -34,7 +34,7 @@ class HutFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val api = DocApi()
+        val api = DocApiService()
         val repository = HutRepository(api)
         viewModelFactory =
             HutViewModelFactory(repository)

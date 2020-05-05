@@ -1,4 +1,4 @@
-package com.seng440.ajl190.huttrackr.utils.api
+package com.seng440.ajl190.huttrackr.data.api
 
 import retrofit2.Response
 

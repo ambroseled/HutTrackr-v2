@@ -12,12 +12,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.seng440.ajl190.huttrackr.R
-import com.seng440.ajl190.huttrackr.model.HutResponse
-import com.seng440.ajl190.huttrackr.repository.HutRepository
-import com.seng440.ajl190.huttrackr.utils.api.DocApi
-import com.seng440.ajl190.huttrackr.utils.decorator.GridSpacingItemDecoration
+import com.seng440.ajl190.huttrackr.data.api.DocApiService
+import com.seng440.ajl190.huttrackr.data.model.HutResponse
+import com.seng440.ajl190.huttrackr.data.repository.HutRepository
 import com.seng440.ajl190.huttrackr.utils.listener.HutListClickListener
 import com.seng440.ajl190.huttrackr.view.adpater.HutsRecyclerAdapter
+import com.seng440.ajl190.huttrackr.view.decorator.GridSpacingItemDecoration
 import com.seng440.ajl190.huttrackr.viewmodel.HutsListViewModel
 import com.seng440.ajl190.huttrackr.viewmodel.factory.HutsListViewModelFactory
 import kotlinx.android.synthetic.main.huts_list_fragment.*
@@ -36,7 +36,7 @@ class HutsListFragment : Fragment(), HutListClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val api = DocApi()
+        val api = DocApiService()
         val hutsRepository = HutRepository(api)
         viewModelFactory =
             HutsListViewModelFactory(hutsRepository)
