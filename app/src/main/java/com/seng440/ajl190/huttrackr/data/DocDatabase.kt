@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.seng440.ajl190.huttrackr.data.dao.HutDao
 import com.seng440.ajl190.huttrackr.data.model.HutResponse
 
-@Database(entities = [HutResponse::class], version = 1, exportSchema = true)
+@Database(entities = [HutResponse::class], version = 3, exportSchema = false)
 abstract class DocDatabase : RoomDatabase() {
 
     abstract fun hutDao(): HutDao
@@ -25,6 +25,7 @@ abstract class DocDatabase : RoomDatabase() {
             .databaseBuilder(context.applicationContext,
                 DocDatabase::class.java,
                 "doc.db")
+            .fallbackToDestructiveMigration()
             .build()
     }
 }

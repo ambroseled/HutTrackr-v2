@@ -7,11 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.data.model.HutResponse
 import com.seng440.ajl190.huttrackr.databinding.HutListItemBinding
-import com.seng440.ajl190.huttrackr.utils.listener.HutListClickListener
 
 class HutsRecyclerAdapter (
-    private val huts: List<HutResponse>,
-    private val listClickListener: HutListClickListener
+    private val huts: List<HutResponse>
+    //private val listClickListener: HutListClickListener
 ) : RecyclerView.Adapter<HutsRecyclerAdapter.HutRecyclerViewHolder>() {
 
     override fun getItemCount() = huts.size
@@ -28,15 +27,15 @@ class HutsRecyclerAdapter (
 
     override fun onBindViewHolder(holder: HutRecyclerViewHolder, position: Int) {
         holder.hutListItemBinding.hutResponse = huts[position]
-        holder.hutListItemBinding.wishSwitchHutList.setOnClickListener {
-            listClickListener.onWishListClick(huts[position])
-        }
-        holder.hutListItemBinding.moreInfoIcon.setOnClickListener {
-            listClickListener.onMoreInfoClick(huts[position])
-        }
-        holder.hutListItemBinding.root.setOnClickListener {
-            listClickListener.onHutCardClick(huts[position], holder.hutListItemBinding.root)
-        }
+//        holder.hutListItemBinding.wishSwitchHutList.setOnClickListener {
+//            listClickListener.onWishListClick(huts[position])
+//        }
+//        holder.hutListItemBinding.moreInfoIcon.setOnClickListener {
+//            listClickListener.onMoreInfoClick(huts[position])
+//        }
+//        holder.hutListItemBinding.root.setOnClickListener {
+//            listClickListener.onHutCardClick(huts[position], holder.hutListItemBinding.root)
+//        }
     }
 
 

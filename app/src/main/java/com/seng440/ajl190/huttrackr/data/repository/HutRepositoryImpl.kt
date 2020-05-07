@@ -8,7 +8,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.time.ZonedDateTime
 
 class HutRepositoryImpl(
     private val dao: HutDao,
@@ -16,40 +15,31 @@ class HutRepositoryImpl(
 ) : HutRepository {
 
     init {
-        docApiDataSource.downloadedCurrentHuts.observeForever{newHuts ->
+        docApiDataSource.currentHuts.observeForever{newHuts ->
             saveHuts(newHuts)
         }
     }
 
+    override suspend fun getHuts(): LiveData<List<HutResponse>> {
+        val fromDb = dao.getHuts()
+        return fromDb
+    }
+
     override suspend fun getAllHuts(): LiveData<List<HutResponse>> {
         return withContext(Dispatchers.IO) {
-            initHutsData()
+            fetchHutsIfNeeded()
             return@withContext dao.getHuts()
         }
     }
 
-    private fun saveHuts(fetchedHuts: List<HutResponse>) {
-        //TODO change this to use an upsert not insert
-        GlobalScope.launch(Dispatchers.IO) {
-            for (hut in fetchedHuts) {
-                dao.insertHut(hut)
-            }
-        }
-    }
-
-    private suspend fun initHutsData() {
-        // TODO need to hold last fetch time in the db to use
-        if (isFetchCurrentNeeded(ZonedDateTime.now().minusDays(2))) {
-            fetchHuts()
-        }
-    }
-
-    private suspend fun fetchHuts() {
+    private suspend fun fetchHutsIfNeeded() {
         docApiDataSource.fetchHuts()
     }
 
-    private fun isFetchCurrentNeeded(lastfetchTime: ZonedDateTime): Boolean {
-        val oldTime = ZonedDateTime.now().minusDays(1)
-        return lastfetchTime.isBefore(oldTime)
+    private fun saveHuts(fetchedHuts: List<HutResponse>) {
+        GlobalScope.launch(Dispatchers.IO) {
+            dao.insertHut(fetchedHuts)
+        }
     }
+
 }

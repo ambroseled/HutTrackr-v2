@@ -1,18 +1,12 @@
 package com.seng440.ajl190.huttrackr.utils
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
-object CoroutineHelper {
 
-    fun<T: Any> ioThenMain(work: suspend (() -> T?), callback: ((T?) -> Unit)) =
-        CoroutineScope(Dispatchers.Main).launch {
-            val data = CoroutineScope(Dispatchers.IO).async rt@{
-                return@rt work()
-            }.await()
-            callback(data)
+fun <T> lazyDeferred(block: suspend CoroutineScope.() -> T): Lazy<Deferred<T>> {
+    return lazy {
+        GlobalScope.async(start = CoroutineStart.LAZY) {
+            block.invoke(this)
         }
-
+    }
 }

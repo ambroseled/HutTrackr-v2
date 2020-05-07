@@ -10,15 +10,16 @@ class DocApiDataSourceImpl(
     private val api: DocApiService
 ) : DocApiDataSource {
 
-    private val _downloadedCurrentHuts = MutableLiveData<List<HutResponse>>()
-    override val downloadedCurrentHuts: LiveData<List<HutResponse>>
-        get() = _downloadedCurrentHuts
+    private val _currentHuts = MutableLiveData<List<HutResponse>>()
+    override val currentHuts: LiveData<List<HutResponse>>
+        get() = _currentHuts
+
 
     override suspend fun fetchHuts() {
         try {
-            val fetchedHuts = api.getHuts()
+            val huts = api.getHuts()
                 .await()
-            _downloadedCurrentHuts.postValue(fetchedHuts)
+            _currentHuts.postValue(huts)
         } catch (e: NoConnectivityExpection) {
             Log.e("connectivity", "No internet connection", e)
         }

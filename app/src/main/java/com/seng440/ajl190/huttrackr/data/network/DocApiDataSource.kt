@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import com.seng440.ajl190.huttrackr.data.model.HutResponse
 
 interface DocApiDataSource {
-    val downloadedCurrentHuts: LiveData<List<HutResponse>>
+
+    val currentHuts: LiveData<List<HutResponse>>
 
     suspend fun fetchHuts()
 }

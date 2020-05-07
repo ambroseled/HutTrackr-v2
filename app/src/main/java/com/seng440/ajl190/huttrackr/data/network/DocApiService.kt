@@ -17,11 +17,11 @@ interface DocApiService {
 
     @GET("v2/huts")
     @Headers("x-api-key: $API_KEY")
-    suspend fun getHuts() : Deferred<List<HutResponse>>
+    fun getHuts() : Deferred<List<HutResponse>>
 
     @GET("v2/huts/{assetId}/detail")
     @Headers("x-api-key: $API_KEY")
-    suspend fun getHut(@Path("assetId") assetId: Int): Deferred<Hut>
+    fun getHut(@Path("assetId") assetId: Int): Deferred<Hut>
 
     companion object {
         operator fun invoke(

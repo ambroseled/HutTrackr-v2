@@ -2,6 +2,7 @@ package com.seng440.ajl190.huttrackr.viewmodel.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.seng440.ajl190.huttrackr.data.repository.HutRepository
 import com.seng440.ajl190.huttrackr.viewmodel.HutViewModel
 
 class HutViewModelFactory(private val repository: HutRepository) : ViewModelProvider.NewInstanceFactory() {

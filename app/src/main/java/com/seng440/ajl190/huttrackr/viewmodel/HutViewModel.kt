@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bumptech.glide.Glide
 import com.seng440.ajl190.huttrackr.data.model.Hut
-import com.seng440.ajl190.huttrackr.utils.CoroutineHelper
+import com.seng440.ajl190.huttrackr.data.repository.HutRepository
 import kotlinx.coroutines.Job
 
 class HutViewModel(
@@ -22,10 +22,7 @@ class HutViewModel(
 
     fun getHut(assetId: Int?) {
         if (assetId != null) {
-            job = CoroutineHelper.ioThenMain(
-                {hutRepository.getHut(assetId)},
-                {_hut.value = it}
-            )
+
         } else {
             // todo handle this
         }
