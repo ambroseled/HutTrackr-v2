@@ -13,7 +13,7 @@ import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
 import com.seng440.ajl190.huttrackr.view.decorator.GridSpacingItemDecoration
 import com.seng440.ajl190.huttrackr.viewmodel.TracksListViewModel
 import com.seng440.ajl190.huttrackr.viewmodel.factory.TracksListViewModelFactory
-import kotlinx.android.synthetic.main.huts_list_fragment.*
+import kotlinx.android.synthetic.main.tracks_list_fragment.*
 import kotlinx.coroutines.launch
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -43,7 +43,7 @@ class TracksListFragment : ScopedFragment(), KodeinAware {
     private fun bindRecyclerView() = launch {
         val returnedTracks = viewModel.tracks.await()
         returnedTracks.observe(viewLifecycleOwner, Observer {tracks ->
-            recycler_view_huts.also {
+            recycler_view_tracks.also {
                 it.layoutManager = GridLayoutManager(requireContext(), 2)
                 it.setHasFixedSize(true)
                 it.adapter =
