@@ -14,23 +14,17 @@ abstract class DocDatabase : RoomDatabase() {
 
     companion object {
 
-        @Volatile
-        private var INSTANCE: DocDatabase? = null
+        @Volatile private var instance: DocDatabase? = null
+        private val LOCK = Any()
 
-        fun getDatabase(context: Context): DocDatabase? {
-            if (INSTANCE == null) {
-                synchronized(DocDatabase::class.java) {
-                    if (INSTANCE == null) {
-                        INSTANCE = Room.databaseBuilder(
-                            context.applicationContext,
-                            DocDatabase::class.java,
-                            "doc_database"
-                        )
-                            .build()
-                    }
-                }
-            }
-            return INSTANCE
+        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
+            instance ?: buildDatabase(context).also { instance = it}
         }
+
+        private fun buildDatabase(context: Context) = Room
+            .databaseBuilder(context.applicationContext,
+                DocDatabase::class.java,
+                "doc.db")
+            .build()
     }
 }

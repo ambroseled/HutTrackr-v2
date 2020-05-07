@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.seng440.ajl190.huttrackr.data.model.HutResponse
-import com.seng440.ajl190.huttrackr.data.repository.HutRepository
 import com.seng440.ajl190.huttrackr.utils.CoroutineHelper
 import kotlinx.coroutines.Job
 

@@ -12,9 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.seng440.ajl190.huttrackr.R
-import com.seng440.ajl190.huttrackr.data.api.DocApiService
 import com.seng440.ajl190.huttrackr.data.model.HutResponse
-import com.seng440.ajl190.huttrackr.data.repository.HutRepository
+import com.seng440.ajl190.huttrackr.data.network.DocApiService
 import com.seng440.ajl190.huttrackr.utils.listener.HutListClickListener
 import com.seng440.ajl190.huttrackr.view.adpater.HutsRecyclerAdapter
 import com.seng440.ajl190.huttrackr.view.decorator.GridSpacingItemDecoration

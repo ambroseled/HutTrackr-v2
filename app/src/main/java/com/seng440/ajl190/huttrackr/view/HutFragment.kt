@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.seng440.ajl190.huttrackr.data.api.DocApiService
-import com.seng440.ajl190.huttrackr.data.repository.HutRepository
+import com.seng440.ajl190.huttrackr.data.network.DocApiService
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
 import com.seng440.ajl190.huttrackr.viewmodel.HutViewModel
 import com.seng440.ajl190.huttrackr.viewmodel.factory.HutViewModelFactory

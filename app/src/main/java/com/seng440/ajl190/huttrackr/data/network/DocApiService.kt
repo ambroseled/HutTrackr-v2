@@ -1,9 +1,10 @@
-package com.seng440.ajl190.huttrackr.data.api
+package com.seng440.ajl190.huttrackr.data.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.seng440.ajl190.huttrackr.data.model.Hut
 import com.seng440.ajl190.huttrackr.data.model.HutResponse
 import kotlinx.coroutines.Deferred
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -23,8 +24,16 @@ interface DocApiService {
     suspend fun getHut(@Path("assetId") assetId: Int): Deferred<Hut>
 
     companion object {
-        operator fun invoke(): DocApiService {
+        operator fun invoke(
+            connectivityInterceptor: ConnectivityInterceptor
+        ): DocApiService {
+
+            val okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(connectivityInterceptor)
+                .build()
+
             return Retrofit.Builder()
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .baseUrl("https://api.doc.govt.nz/")

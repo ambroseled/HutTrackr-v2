@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bumptech.glide.Glide
 import com.seng440.ajl190.huttrackr.data.model.Hut
-import com.seng440.ajl190.huttrackr.data.repository.HutRepository
 import com.seng440.ajl190.huttrackr.utils.CoroutineHelper
 import kotlinx.coroutines.Job
 

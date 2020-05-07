@@ -1,11 +1,9 @@
 package com.seng440.ajl190.huttrackr.data.repository
 
-import com.seng440.ajl190.huttrackr.data.api.DocApiService
-import com.seng440.ajl190.huttrackr.data.dao.HutDao
+import androidx.lifecycle.LiveData
+import com.seng440.ajl190.huttrackr.data.model.HutResponse
 
-class HutRepository(
-    private val apiService: DocApiService,
-    private val dao: HutDao
-) {
+interface HutRepository {
 
+    suspend fun getAllHuts(): LiveData<List<HutResponse>>
 }
