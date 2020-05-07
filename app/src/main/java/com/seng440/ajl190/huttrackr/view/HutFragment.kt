@@ -4,19 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
-import com.seng440.ajl190.huttrackr.repository.HutRepository
-import com.seng440.ajl190.huttrackr.utils.api.DocApi
+import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
 import com.seng440.ajl190.huttrackr.viewmodel.HutViewModel
 import com.seng440.ajl190.huttrackr.viewmodel.factory.HutViewModelFactory
+import kotlinx.coroutines.launch
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 
 
-class HutFragment : Fragment() {
+class HutFragment : ScopedFragment(), KodeinAware {
 
-    private lateinit var viewModelFactory: HutViewModelFactory
+    override val kodein: Kodein by kodein()
+    private val viewModelFactory: HutViewModelFactory by instance()
     private lateinit var viewModel: HutViewModel
     private var assetId: Int? = -1
     private var _binding: HutFragmentBinding? = null
@@ -34,21 +37,18 @@ class HutFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val api = DocApi()
-        val repository = HutRepository(api)
-        viewModelFactory =
-            HutViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(HutViewModel::class.java)
         assetId = arguments?.getInt("assetId")
 
         if (assetId != -1) {
-            viewModel.getHut(assetId)
-            viewModel.hut.observe(viewLifecycleOwner, Observer { hut ->
-                binding.hut = hut
-            })
+            bindUi()
         } else {
             // todo handle this case gracefully
         }
+    }
+
+    private fun bindUi() = launch {
+        viewModel.setHut(assetId!!)
     }
 
 }

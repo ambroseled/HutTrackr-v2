@@ -6,7 +6,7 @@
     <data>
         <variable
             name="hut"
-            type="com.seng440.ajl190.huttrackr.model.Hut" />
+            type="com.seng440.ajl190.huttrackr.data.model.Hut" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

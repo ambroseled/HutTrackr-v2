@@ -1,5 +1,6 @@
-package com.seng440.ajl190.huttrackr.model
+package com.seng440.ajl190.huttrackr.data.model
 
+import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -11,10 +12,11 @@ data class HutResponse(
     val assetId: Int,
 
     @ColumnInfo(name = "name")
-    val name: String,
+    val name: String?,
 
     @ColumnInfo(name = "region")
-    val region: String,
+    @Nullable
+    val region: String?,
 
     @ColumnInfo(name = "status")
     val status: String,

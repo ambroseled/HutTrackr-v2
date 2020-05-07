@@ -1,7 +1,7 @@
 package com.seng440.ajl190.huttrackr.utils.listener
 
 import android.view.View
-import com.seng440.ajl190.huttrackr.model.HutResponse
+import com.seng440.ajl190.huttrackr.data.model.HutResponse
 
 interface HutListClickListener {
 
