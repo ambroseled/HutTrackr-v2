@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="hutResponse"
-            type="com.seng440.ajl190.huttrackr.data.model.HutResponse" />
+            name="trackResponse"
+            type="com.seng440.ajl190.huttrackr.data.model.TrackResponse" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -24,14 +24,14 @@
             app:layout_constraintTop_toBottomOf="@+id/hutStatusRecycler">
 
             <TextView
-                android:id="@+id/hutNameRecycler"
+                android:id="@+id/trackNameRecycler"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="4dp"
                 android:fontFamily="casual"
-                android:text="@{hutResponse.name}"
+                android:text="@{trackResponse.name}"
                 android:textColor="#203E9A"
                 android:textSize="14sp"
                 android:textStyle="bold|italic"
@@ -40,7 +40,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/hutRegionRecycler"
+                android:id="@+id/trackRegionRecycler"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -48,31 +48,15 @@
                 android:drawableStart="@drawable/ic_location_on_green_12dp"
                 android:drawablePadding="8dp"
                 android:fontFamily="casual"
-                android:text="@{hutResponse.region}"
+                android:text="@{trackResponse.region[0]}"
                 android:textAppearance="@style/AppTheme"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hutNameRecycler" />
-
-            <TextView
-                android:id="@+id/hutStatusRecycler"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:drawableStart="@drawable/ic_vpn_key_green_12dp"
-                android:drawablePadding="8dp"
-                android:fontFamily="casual"
-                android:text="@{hutResponse.status}"
-                android:textAppearance="@style/AppTheme"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hutRegionRecycler" />
+                app:layout_constraintTop_toBottomOf="@+id/trackNameRecycler" />
 
             <Switch
-                android:id="@+id/wishSwitchHutListHut"
+                android:id="@+id/wishSwitchHutListTrack"
                 style="@style/AppTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,7 +69,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageView
-                android:id="@+id/moreInfoIconHut"
+                android:id="@+id/moreInfoIconTrack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"

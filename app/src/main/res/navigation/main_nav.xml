@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/hutsListFragment"
-        android:name="com.seng440.ajl190.huttrackr.view.HutsListFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.hut.HutsListFragment"
         android:label="huts_list_fragment"
         tools:layout="@layout/huts_list_fragment">
         <action
@@ -16,12 +16,12 @@
     </fragment>
     <fragment
         android:id="@+id/tracksFragment"
-        android:name="com.seng440.ajl190.huttrackr.view.TracksFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.track.TracksFragment"
         android:label="tracks_fragment"
         tools:layout="@layout/tracks_fragment" />
     <fragment
         android:id="@+id/hutFragment"
-        android:name="com.seng440.ajl190.huttrackr.view.HutFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.hut.HutFragment"
         android:label="hut_fragment"
         tools:layout="@layout/hut_fragment">
         <argument
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/hutsFragment"
-        android:name="com.seng440.ajl190.huttrackr.view.HutsFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.hut.HutsFragment"
         android:label="huts_fragment"
         tools:layout="@layout/huts_fragment" >
         <action

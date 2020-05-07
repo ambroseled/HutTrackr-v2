@@ -5,17 +5,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.seng440.ajl190.huttrackr.view.hut.HutsListFragment
-import com.seng440.ajl190.huttrackr.view.hut.HutsMapFragment
+import com.seng440.ajl190.huttrackr.view.track.TracksListFragment
+import com.seng440.ajl190.huttrackr.view.track.TracksMapFragment
 
-class HutTabAdapter(private val myContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class TrackTabAdapter(private val myContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                HutsListFragment()
+                TracksListFragment()
             }
             1 -> {
-                HutsMapFragment() //todo change to map fragment
+                TracksMapFragment() //todo change to map fragment
             }
             else -> {
                 HutsListFragment()

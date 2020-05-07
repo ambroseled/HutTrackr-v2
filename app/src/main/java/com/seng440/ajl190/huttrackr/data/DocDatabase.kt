@@ -4,13 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.seng440.ajl190.huttrackr.data.dao.HutDao
+import com.seng440.ajl190.huttrackr.data.dao.TrackDao
 import com.seng440.ajl190.huttrackr.data.model.HutResponse
+import com.seng440.ajl190.huttrackr.data.model.TrackResponse
 
-@Database(entities = [HutResponse::class], version = 3, exportSchema = false)
+@Database(entities = [HutResponse::class, TrackResponse::class], version = 4, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class DocDatabase : RoomDatabase() {
 
     abstract fun hutDao(): HutDao
+    abstract fun trackDao(): TrackDao
 
     companion object {
 

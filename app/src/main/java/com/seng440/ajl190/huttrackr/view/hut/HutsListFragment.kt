@@ -1,4 +1,4 @@
-package com.seng440.ajl190.huttrackr.view
+package com.seng440.ajl190.huttrackr.view.hut
 
 import android.os.Bundle
 import android.view.LayoutInflater
