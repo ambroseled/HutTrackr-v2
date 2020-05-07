@@ -10,7 +10,6 @@ import com.seng440.ajl190.huttrackr.databinding.HutListItemBinding
 
 class HutsRecyclerAdapter (
     private val huts: List<HutResponse>
-    //private val listClickListener: HutListClickListener
 ) : RecyclerView.Adapter<HutsRecyclerAdapter.HutRecyclerViewHolder>() {
 
     override fun getItemCount() = huts.size

@@ -6,6 +6,7 @@ import com.seng440.ajl190.huttrackr.data.DocDatabase
 import com.seng440.ajl190.huttrackr.data.network.*
 import com.seng440.ajl190.huttrackr.data.repository.HutRepository
 import com.seng440.ajl190.huttrackr.data.repository.HutRepositoryImpl
+import com.seng440.ajl190.huttrackr.viewmodel.factory.HutViewModelFactory
 import com.seng440.ajl190.huttrackr.viewmodel.factory.HutsListViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -28,6 +29,7 @@ class DocApplication: Application(), KodeinAware {
         bind<DocApiDataSource>() with singleton { DocApiDataSourceImpl(instance()) }
         bind<HutRepository>() with singleton { HutRepositoryImpl(instance(), instance()) }
         bind() from provider { HutsListViewModelFactory(instance()) }
+        bind() from provider { HutViewModelFactory(instance()) }
 
     }
 

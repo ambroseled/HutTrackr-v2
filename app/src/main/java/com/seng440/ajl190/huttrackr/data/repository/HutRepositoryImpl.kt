@@ -2,6 +2,7 @@ package com.seng440.ajl190.huttrackr.data.repository
 
 import androidx.lifecycle.LiveData
 import com.seng440.ajl190.huttrackr.data.dao.HutDao
+import com.seng440.ajl190.huttrackr.data.model.Hut
 import com.seng440.ajl190.huttrackr.data.model.HutResponse
 import com.seng440.ajl190.huttrackr.data.network.DocApiDataSource
 import kotlinx.coroutines.Dispatchers
@@ -15,14 +16,9 @@ class HutRepositoryImpl(
 ) : HutRepository {
 
     init {
-        docApiDataSource.currentHuts.observeForever{newHuts ->
+        docApiDataSource.huts.observeForever{ newHuts ->
             saveHuts(newHuts)
         }
-    }
-
-    override suspend fun getHuts(): LiveData<List<HutResponse>> {
-        val fromDb = dao.getHuts()
-        return fromDb
     }
 
     override suspend fun getAllHuts(): LiveData<List<HutResponse>> {
@@ -32,8 +28,15 @@ class HutRepositoryImpl(
         }
     }
 
+    override suspend fun getHut(assetId: Int): LiveData<Hut> {
+        return withContext(Dispatchers.IO) {
+            docApiDataSource.fetchHut(assetId)
+            return@withContext docApiDataSource.hut
+        }
+    }
+
     private suspend fun fetchHutsIfNeeded() {
-        docApiDataSource.fetchHuts()
+        //docApiDataSource.fetchHuts()
     }
 
     private fun saveHuts(fetchedHuts: List<HutResponse>) {

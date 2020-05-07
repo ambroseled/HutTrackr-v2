@@ -67,7 +67,8 @@ class HutsListFragment : ScopedFragment(), KodeinAware {
 //    }
 //
 //    override fun onHutCardClick(hut: HutResponse, view: View) {
-//        view.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.bounce))
+//        //view.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in))
+//        // todo fix animation
 //    }
 //
 //    override fun onMoreInfoClick(hut: HutResponse) {

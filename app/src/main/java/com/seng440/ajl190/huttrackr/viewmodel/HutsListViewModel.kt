@@ -12,22 +12,4 @@ class HutsListViewModel(
         hutRepository.getAllHuts()
     }
 
-//    private lateinit var job: Job
-//    private val _huts = MutableLiveData<List<HutResponse>>()
-//    val allHuts: LiveData<List<HutResponse>>
-//        get() = _huts
-//
-//    fun getHuts() {
-//        println("Jeff: in view model getHuts")
-//        job = CoroutineHelpers.ioThenMain(
-//            {hutRepository.getHuts()},
-//            {_huts.value = it?.value}
-//        )
-//    }
-//
-//    override fun onCleared() {
-//        super.onCleared()
-//        if (::job.isInitialized) job.cancel()
-//    }
-
 }

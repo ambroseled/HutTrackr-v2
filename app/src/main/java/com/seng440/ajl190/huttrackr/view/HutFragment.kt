@@ -4,18 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
+import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
 import com.seng440.ajl190.huttrackr.viewmodel.HutViewModel
 import com.seng440.ajl190.huttrackr.viewmodel.factory.HutViewModelFactory
+import kotlinx.coroutines.launch
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 
 
-class HutFragment : Fragment(), KodeinAware {
+class HutFragment : ScopedFragment(), KodeinAware {
 
     override val kodein: Kodein by kodein()
     private val viewModelFactory: HutViewModelFactory by instance()
@@ -40,10 +41,14 @@ class HutFragment : Fragment(), KodeinAware {
         assetId = arguments?.getInt("assetId")
 
         if (assetId != -1) {
-
+            bindUi()
         } else {
             // todo handle this case gracefully
         }
+    }
+
+    private fun bindUi() = launch {
+        viewModel.setHut(assetId!!)
     }
 
 }
