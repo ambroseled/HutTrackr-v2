@@ -48,7 +48,12 @@ class HutFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun bindUi() = launch {
+        println("Jeff: $assetId")
         viewModel.setHut(assetId!!)
+        val hut = viewModel.hut.await()
+        binding.hut = hut.value
+        //detailedHutImage.startAnimation(AnimationUtils.loadAnimation(this, R.anim.bounce))
+
     }
 
 }

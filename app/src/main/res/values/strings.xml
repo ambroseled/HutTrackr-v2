@@ -6,5 +6,5 @@
     <string name="huts">Huts</string>
     <string name="tracks">Tracks</string>
     <string name="hutName">Hut Name</string>
-    <string name="google_maps_key">Hut Name</string>
+    <string name="access_token">sk.eyJ1IjoiYWpsMTkwIiwiYSI6ImNrOXhyYWF6NTBuZmUzZG50MTUyaGdrb3gifQ.R84i59HagOTMUVfvV0VYhw</string>
 </resources>
