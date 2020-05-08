@@ -52,11 +52,99 @@
             <ImageView
                 android:id="@+id/detailedHutImage"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="151dp"
                 app:imageUrl="@{hut.introductionThumbnail}"
                 tools:src="@tools:sample/avatars" />
 
-        </LinearLayout> <!-- Image by <a href="https://pixabay.com/users/kewl-24755/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=90388">kewl</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=90388">Pixabay</a> -->
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="409dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bannerLayout">
+
+            <TextView
+                android:id="@+id/detailedHutIntro"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:ellipsize="none"
+                android:maxLines="3"
+                android:scrollHorizontally="false"
+                android:text="@{hut.introduction}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:fontFamily="casual"/>
+
+            <LinearLayout
+                android:id="@+id/leftLayout"
+                android:layout_width="203dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detailedHutIntro">
+
+                <TextView
+                    android:id="@+id/detailedHutCat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_home_green_24dp"
+                    android:text="@{hut.hutCategory}"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="casual"/>
+
+                <TextView
+                    android:id="@+id/detailedHutRegion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableStart="@drawable/ic_location_on_green_24dp"
+                    android:text="@{hut.region}"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="casual"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rightLayout"
+                android:layout_width="203dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="32dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/leftLayout"
+                app:layout_constraintTop_toBottomOf="@+id/detailedHutIntro">
+
+                <TextView
+                    android:id="@+id/detailedHutStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_vpn_key_black_24dp"
+                    android:text="@{hut.status}"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="casual"/>
+
+                <TextView
+                    android:id="@+id/detailedHutBunks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableStart="@drawable/ic_bunks_24dp"
+                    android:text="@{String.valueOf(hut.numberOfBunks)}"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="casual"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout> <!-- Image by <a href="https://pixabay.com/users/kewl-24755/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=90388">kewl</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=90388">Pixabay</a> -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

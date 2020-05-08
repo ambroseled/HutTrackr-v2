@@ -6,5 +6,14 @@
     <string name="huts">Huts</string>
     <string name="tracks">Tracks</string>
     <string name="hutName">Hut Name</string>
-    <string name="access_token">sk.eyJ1IjoiYWpsMTkwIiwiYSI6ImNrOXhyYWF6NTBuZmUzZG50MTUyaGdrb3gifQ.R84i59HagOTMUVfvV0VYhw</string>
+    <string name="hutIntro">Hut Description</string>
+    <string name="hutCat">Hut Category</string>
+    <string name="hutLocation">Hut Location</string>
+    <string name="hutRegion">Hut Region</string>
+    <string name="hutRoadEnd">Road End</string>
+    <string name="hutLink">Hut Link</string>
+    <string name="hutStatus">Hut Status</string>
+    <string name="hutBunks">Hut Bunks</string>
+    <string name="hutBookable">Hut Bookable</string>
+    <string name="emptyString"></string>
 </resources>
