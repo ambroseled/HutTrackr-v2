@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.seng440.ajl190.huttrackr.R
+import com.seng440.ajl190.huttrackr.data.model.TrackResponse
+import com.seng440.ajl190.huttrackr.utils.listener.TrackListClickListener
 import com.seng440.ajl190.huttrackr.view.adpater.TracksRecyclerAdapter
 import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
 import com.seng440.ajl190.huttrackr.view.decorator.GridSpacingItemDecoration
@@ -20,7 +24,7 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 
-class TracksListFragment : ScopedFragment(), KodeinAware {
+class TracksListFragment : ScopedFragment(), KodeinAware, TrackListClickListener {
 
     companion object {
         fun newInstance() = TracksListFragment()
@@ -43,7 +47,6 @@ class TracksListFragment : ScopedFragment(), KodeinAware {
         bindRecyclerView()
     }
 
-
     private fun bindRecyclerView() = launch {
         val returnedTracks = viewModel.tracks.await()
         returnedTracks.observe(viewLifecycleOwner, Observer {tracks ->
@@ -51,7 +54,7 @@ class TracksListFragment : ScopedFragment(), KodeinAware {
                 it.layoutManager = GridLayoutManager(requireContext(), 2)
                 it.setHasFixedSize(true)
                 it.adapter =
-                    TracksRecyclerAdapter(tracks)
+                    TracksRecyclerAdapter(tracks, this@TracksListFragment)
                 it.addItemDecoration(
                     GridSpacingItemDecoration(
                         2,
@@ -62,6 +65,20 @@ class TracksListFragment : ScopedFragment(), KodeinAware {
             }
 
         })
+    }
+
+    override fun onTrackCardClick(track: TrackResponse, view: View) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onMoreInfoClick(track: TrackResponse) {
+        val navController = this.findNavController()
+        val action = TracksListFragmentDirections.actionTracksListFragmentToTrackFragment(track.assetId)
+        navController.navigate(action)
+    }
+
+    override fun onWishListClick(track: TrackResponse) {
+        Toast.makeText(requireContext(), "Wish list toggle for ${track.name}", Toast.LENGTH_SHORT).show()
     }
 
 }

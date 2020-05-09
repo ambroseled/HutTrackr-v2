@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_tracksListFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_tracksListFragment_to_trackFragment"
+            app:destination="@id/trackFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -48,6 +51,16 @@
         <action
             android:id="@+id/action_mapsFragment_to_preferencesFragment"
             app:destination="@id/preferencesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trackFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.track.TrackFragment"
+        android:label="TrackFragment"
+        >
+        <argument
+            android:name="assetId"
+            app:argType="string"
+            />
     </fragment>
 
 

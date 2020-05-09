@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.seng440.ajl190.huttrackr.data.model.Hut
 import com.seng440.ajl190.huttrackr.data.model.HutResponse
+import com.seng440.ajl190.huttrackr.data.model.Track
 import com.seng440.ajl190.huttrackr.data.model.TrackResponse
 import com.seng440.ajl190.huttrackr.utils.NoConnectivityExpection
 
@@ -23,6 +24,10 @@ class DocApiDataSourceImpl(
     private val _tracks = MutableLiveData<List<TrackResponse>>()
     override val tracks: LiveData<List<TrackResponse>>
         get() = _tracks
+
+    private val _track = MutableLiveData<Track>()
+    override val track: LiveData<Track>
+        get() = _track
 
 
 
@@ -51,6 +56,16 @@ class DocApiDataSourceImpl(
             val fetchedTracks = api.getTracksAsync()
                 .await()
             _tracks.postValue(fetchedTracks)
+        } catch (e: NoConnectivityExpection) {
+            Log.e("connectivity", "No internet connection", e)
+        }
+    }
+
+    override suspend fun fetchTrack(assetId: String) {
+        try {
+            val fetchedTrack = api.getTrackAsync(assetId)
+                .await()
+            _track.postValue(fetchedTrack)
         } catch (e: NoConnectivityExpection) {
             Log.e("connectivity", "No internet connection", e)
         }

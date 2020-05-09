@@ -11,7 +11,7 @@ import com.seng440.ajl190.huttrackr.data.model.HutResponse
 interface HutDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertHut(huts: List<HutResponse>)
+    fun insertHutResponse(huts: List<HutResponse>)
 
     @Query("SELECT * FROM hut_response")
     fun getHuts() : LiveData<List<HutResponse>>

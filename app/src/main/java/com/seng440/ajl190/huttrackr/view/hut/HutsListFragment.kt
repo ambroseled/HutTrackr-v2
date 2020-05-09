@@ -80,8 +80,6 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
     }
 
     override fun onMoreInfoClick(hut: HutResponse) {
-        Toast.makeText(requireContext(), "More info for ${hut.name} clicked", Toast.LENGTH_SHORT).show()
-
         val navController = this.findNavController()
         val action = HutsListFragmentDirections.actionHutsListFragmentToHutFragment(hut.assetId)
         navController.navigate(action)

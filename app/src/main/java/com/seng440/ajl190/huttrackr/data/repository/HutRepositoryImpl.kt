@@ -41,7 +41,7 @@ class HutRepositoryImpl(
 
     private fun saveHuts(fetchedHuts: List<HutResponse>) {
         GlobalScope.launch(Dispatchers.IO) {
-            dao.insertHut(fetchedHuts)
+            dao.insertHutResponse(fetchedHuts)
         }
     }
 

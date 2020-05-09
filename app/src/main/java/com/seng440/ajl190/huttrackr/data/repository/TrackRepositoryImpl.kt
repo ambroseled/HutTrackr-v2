@@ -2,6 +2,7 @@ package com.seng440.ajl190.huttrackr.data.repository
 
 import androidx.lifecycle.LiveData
 import com.seng440.ajl190.huttrackr.data.dao.TrackDao
+import com.seng440.ajl190.huttrackr.data.model.Track
 import com.seng440.ajl190.huttrackr.data.model.TrackResponse
 import com.seng440.ajl190.huttrackr.data.network.DocApiDataSource
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +31,14 @@ class TrackRepositoryImpl(
 
     private fun saveTracks(tracks: List<TrackResponse>) {
         GlobalScope.launch(Dispatchers.IO) {
-            dao.insertTrack(tracks)
+            dao.insertTrackResponse(tracks)
+        }
+    }
+
+    override suspend fun getTrack(assetId: String): LiveData<Track> {
+        return withContext(Dispatchers.IO) {
+            docApiDataSource.fetchTrack(assetId)
+            return@withContext docApiDataSource.track
         }
     }
 }

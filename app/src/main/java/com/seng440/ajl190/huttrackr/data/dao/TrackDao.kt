@@ -11,8 +11,9 @@ import com.seng440.ajl190.huttrackr.data.model.TrackResponse
 interface TrackDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTrack(tracks: List<TrackResponse>)
+    fun insertTrackResponse(tracks: List<TrackResponse>)
 
     @Query("SELECT * FROM track_response")
     fun getTracks() : LiveData<List<TrackResponse>>
+
 }

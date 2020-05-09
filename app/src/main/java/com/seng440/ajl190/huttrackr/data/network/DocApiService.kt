@@ -3,6 +3,7 @@ package com.seng440.ajl190.huttrackr.data.network
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.seng440.ajl190.huttrackr.data.model.Hut
 import com.seng440.ajl190.huttrackr.data.model.HutResponse
+import com.seng440.ajl190.huttrackr.data.model.Track
 import com.seng440.ajl190.huttrackr.data.model.TrackResponse
 import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
@@ -28,6 +29,10 @@ interface DocApiService {
     @GET("v1/tracks")
     @Headers("x-api-key: $API_KEY")
     fun getTracksAsync(): Deferred<List<TrackResponse>>
+
+    @GET("v1/tracks/{assetId}/detail")
+    @Headers("x-api-key: $API_KEY")
+    fun getTrackAsync(@Path("assetId") assetId: String): Deferred<Track>
 
     companion object {
         operator fun invoke(

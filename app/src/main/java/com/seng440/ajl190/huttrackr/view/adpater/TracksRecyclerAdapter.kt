@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.data.model.TrackResponse
 import com.seng440.ajl190.huttrackr.databinding.TrackListItemBinding
+import com.seng440.ajl190.huttrackr.utils.listener.TrackListClickListener
 
 class TracksRecyclerAdapter (
-    private val tracks: List<TrackResponse>
+    private val tracks: List<TrackResponse>,
+    private val listClickListener: TrackListClickListener
 ) : RecyclerView.Adapter<TracksRecyclerAdapter.TrackRecyclerViewHolder>() {
 
 
@@ -27,6 +29,15 @@ class TracksRecyclerAdapter (
 
     override fun onBindViewHolder(holder: TrackRecyclerViewHolder, position: Int) {
         holder.trackListItemBinding.trackResponse = tracks[position]
+        holder.trackListItemBinding.wishSwitchTrackList.setOnClickListener {
+            listClickListener.onWishListClick(tracks[position])
+        }
+        holder.trackListItemBinding.moreInfoIconTrack.setOnClickListener {
+            listClickListener.onMoreInfoClick(tracks[position])
+        }
+        holder.trackListItemBinding.root.setOnClickListener {
+            listClickListener.onTrackCardClick(tracks[position], holder.trackListItemBinding.root)
+        }
     }
 
 

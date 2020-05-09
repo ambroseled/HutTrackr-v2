@@ -10,6 +10,7 @@ import com.seng440.ajl190.huttrackr.data.repository.TrackRepository
 import com.seng440.ajl190.huttrackr.data.repository.TrackRepositoryImpl
 import com.seng440.ajl190.huttrackr.viewmodel.factory.HutViewModelFactory
 import com.seng440.ajl190.huttrackr.viewmodel.factory.HutsListViewModelFactory
+import com.seng440.ajl190.huttrackr.viewmodel.factory.TrackViewModelFactory
 import com.seng440.ajl190.huttrackr.viewmodel.factory.TracksListViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -38,6 +39,7 @@ class DocApplication: Application(), KodeinAware {
 
         bind<TrackRepository>() with singleton { TrackRepositoryImpl(instance(), instance()) }
         bind() from provider { TracksListViewModelFactory(instance()) }
+        bind() from provider { TrackViewModelFactory(instance()) }
 
     }
 
