@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -75,8 +76,7 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
     }
 
     override fun onHutCardClick(hut: HutResponse, view: View) {
-
-        // todo fix animation
+        view.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.bounce))
     }
 
     override fun onMoreInfoClick(hut: HutResponse) {

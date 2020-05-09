@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -68,7 +69,8 @@ class TracksListFragment : ScopedFragment(), KodeinAware, TrackListClickListener
     }
 
     override fun onTrackCardClick(track: TrackResponse, view: View) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.bounce))
+
     }
 
     override fun onMoreInfoClick(track: TrackResponse) {
