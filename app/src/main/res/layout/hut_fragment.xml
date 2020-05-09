@@ -15,6 +15,23 @@
         android:layout_height="match_parent"
         tools:context=".view.hut.HutFragment" >
 
+        <LinearLayout
+            android:id="@+id/hutBanner"
+            android:layout_width="414dp"
+            android:layout_height="190dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:imageUrl="@{hut.introductionThumbnail}"
+                tools:srcCompat="@tools:sample/avatars[12]" />
+        </LinearLayout>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
@@ -28,42 +45,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:maxImageSize="32dp" />
 
-        <LinearLayout
-            android:id="@+id/bannerLayout"
-            android:layout_width="414dp"
-            android:layout_height="202dp"
-            android:background="@drawable/hut_background"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/detailedHutName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="casual"
-                android:text="@{hut.name}"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/detailedHutImage"
-                android:layout_width="match_parent"
-                android:layout_height="151dp"
-                app:imageUrl="@{hut.introductionThumbnail}"
-                tools:src="@tools:sample/avatars" />
-
-        </LinearLayout>
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="409dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bannerLayout">
+            app:layout_constraintTop_toBottomOf="@+id/hutBanner">
 
             <TextView
                 android:id="@+id/detailedHutIntro"
@@ -74,13 +62,13 @@
                 android:layout_marginEnd="16dp"
                 android:layout_weight="1"
                 android:ellipsize="none"
+                android:fontFamily="casual"
                 android:maxLines="3"
                 android:scrollHorizontally="false"
                 android:text="@{hut.introduction}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:fontFamily="casual"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/leftLayout"
@@ -97,9 +85,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_home_green_24dp"
-                    android:text="@{hut.hutCategory}"
                     android:drawablePadding="8dp"
-                    android:fontFamily="casual"/>
+                    android:fontFamily="casual"
+                    android:text="@{hut.hutCategory}" />
 
                 <TextView
                     android:id="@+id/detailedHutRegion"
@@ -107,9 +95,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:drawableStart="@drawable/ic_location_on_green_24dp"
-                    android:text="@{hut.region}"
                     android:drawablePadding="8dp"
-                    android:fontFamily="casual"/>
+                    android:fontFamily="casual"
+                    android:text="@{hut.region}" />
 
             </LinearLayout>
 
@@ -128,9 +116,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_vpn_key_black_24dp"
-                    android:text="@{hut.status}"
                     android:drawablePadding="8dp"
-                    android:fontFamily="casual"/>
+                    android:fontFamily="casual"
+                    android:text="@{hut.status}" />
 
                 <TextView
                     android:id="@+id/detailedHutBunks"
@@ -138,9 +126,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:drawableStart="@drawable/ic_bunks_24dp"
-                    android:text="@{String.valueOf(hut.numberOfBunks)}"
                     android:drawablePadding="8dp"
-                    android:fontFamily="casual"/>
+                    android:fontFamily="casual"
+                    android:text="@{String.valueOf(hut.numberOfBunks)}" />
 
             </LinearLayout>
 
