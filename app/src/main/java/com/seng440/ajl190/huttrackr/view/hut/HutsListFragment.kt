@@ -27,6 +27,10 @@ import org.kodein.di.generic.instance
 
 class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
 
+    companion object {
+        fun newInstance() = HutsListFragment()
+    }
+
     override val kodein: Kodein by kodein()
     private val viewModelFactory: HutsListViewModelFactory by instance()
     private lateinit var viewModel: HutsListViewModel
@@ -79,7 +83,7 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
         Toast.makeText(requireContext(), "More info for ${hut.name} clicked", Toast.LENGTH_SHORT).show()
 
         val navController = this.findNavController()
-        val action = HutsFragmentDirections.actionHutsFragmentToHutFragment(hut.assetId)
+        val action = HutsListFragmentDirections.actionHutsListFragmentToHutFragment(hut.assetId)
         navController.navigate(action)
     }
 

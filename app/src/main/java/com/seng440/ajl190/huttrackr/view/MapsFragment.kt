@@ -1,5 +1,4 @@
-package com.seng440.ajl190.huttrackr.view.hut
-
+package com.seng440.ajl190.huttrackr.view
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -13,32 +12,30 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.seng440.ajl190.huttrackr.R
-import com.seng440.ajl190.huttrackr.viewmodel.HutsMapViewModel
-import kotlinx.android.synthetic.main.huts_map_fragment.*
+import com.seng440.ajl190.huttrackr.viewmodel.MapsViewModel
+import kotlinx.android.synthetic.main.maps_fragment.*
 
-private const val PERMISSION_REQUEST = 10
+class MapsFragment : Fragment() {
 
-
-class HutsMapFragment : Fragment() {
-
-    private lateinit var viewModel: HutsMapViewModel
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val MY_PERMISSION_FINE_LOCATION = 101
 
+    companion object {
+        fun newInstance() = MapsFragment()
+    }
+
+    private lateinit var viewModel: MapsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.huts_map_fragment, container, false)
-
-        return view
+        return inflater.inflate(R.layout.maps_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HutsMapViewModel::class.java)
-
+        viewModel = ViewModelProvider(this).get(MapsViewModel::class.java)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         fusedLocationClient.lastLocation.addOnSuccessListener {location ->
@@ -49,6 +46,7 @@ class HutsMapFragment : Fragment() {
         if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), MY_PERMISSION_FINE_LOCATION)
         }
+
     }
 
 

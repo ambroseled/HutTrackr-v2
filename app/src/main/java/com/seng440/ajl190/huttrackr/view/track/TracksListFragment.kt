@@ -22,6 +22,10 @@ import org.kodein.di.generic.instance
 
 class TracksListFragment : ScopedFragment(), KodeinAware {
 
+    companion object {
+        fun newInstance() = TracksListFragment()
+    }
+
     override val kodein: Kodein by kodein()
     private val viewModelFactory: TracksListViewModelFactory by instance()
     private lateinit var viewModel: TracksListViewModel

@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/hutsFragment"
+        android:id="@+id/hutsListFragment"
         android:title="@string/huts"
         android:icon="@drawable/ic_home_green_24dp"/>
 
     <item
-        android:id="@+id/tracksFragment"
+        android:id="@+id/tracksListFragment"
         android:title="@string/tracks"
         android:icon="@drawable/ic_track_green_24dp"/>
+    <item
+        android:id="@+id/mapsFragment"
+        android:icon="@drawable/ic_map_green_24dp"
+        android:title="@string/map" />
+    <item
+        android:id="@+id/preferencesFragment"
+        android:icon="@drawable/ic_settings_green_24dp"
+        android:title="@string/pref" />
 </menu>

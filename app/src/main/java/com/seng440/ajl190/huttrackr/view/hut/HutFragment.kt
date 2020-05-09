@@ -18,6 +18,10 @@ import org.kodein.di.generic.instance
 
 class HutFragment : ScopedFragment(), KodeinAware {
 
+    companion object {
+        fun newInstance() = HutFragment()
+    }
+
     override val kodein: Kodein by kodein()
     private val viewModelFactory: HutViewModelFactory by instance()
     private lateinit var viewModel: HutViewModel

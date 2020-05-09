@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/hutsFragment">
+    app:startDestination="@id/hutsListFragment">
 
     <fragment
         android:id="@+id/hutsListFragment"
@@ -13,12 +13,10 @@
         <action
             android:id="@+id/action_hutsListFragment_to_hutFragment"
             app:destination="@id/hutFragment" />
+        <action
+            android:id="@+id/action_hutsListFragment_to_tracksListFragment"
+            app:destination="@id/tracksListFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/tracksFragment"
-        android:name="com.seng440.ajl190.huttrackr.view.track.TracksFragment"
-        android:label="tracks_fragment"
-        tools:layout="@layout/tracks_fragment" />
     <fragment
         android:id="@+id/hutFragment"
         android:name="com.seng440.ajl190.huttrackr.view.hut.HutFragment"
@@ -30,16 +28,26 @@
              />
     </fragment>
     <fragment
-        android:id="@+id/hutsFragment"
-        android:name="com.seng440.ajl190.huttrackr.view.hut.HutsFragment"
-        android:label="huts_fragment"
-        tools:layout="@layout/huts_fragment" >
+        android:id="@+id/preferencesFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.PreferencesFragment"
+        android:label="preferences_fragment"
+        tools:layout="@layout/preferences_fragment" />
+    <fragment
+        android:id="@+id/tracksListFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.track.TracksListFragment"
+        android:label="TracksListFragment" >
         <action
-            android:id="@+id/action_hutsFragment_to_tracksFragment"
-            app:destination="@id/tracksFragment" />
+            android:id="@+id/action_tracksListFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.MapsFragment"
+        android:label="maps_fragment"
+        tools:layout="@layout/maps_fragment" >
         <action
-            android:id="@+id/action_hutsFragment_to_hutFragment"
-            app:destination="@id/hutFragment" />
+            android:id="@+id/action_mapsFragment_to_preferencesFragment"
+            app:destination="@id/preferencesFragment" />
     </fragment>
 
 

@@ -5,6 +5,8 @@
     <string name="wishlist">Wishlist</string>
     <string name="huts">Huts</string>
     <string name="tracks">Tracks</string>
+    <string name="pref">Preferences</string>
+    <string name="map">Map</string>
     <string name="hutName">Hut Name</string>
     <string name="hutIntro">Hut Description</string>
     <string name="hutCat">Hut Category</string>
@@ -15,5 +17,4 @@
     <string name="hutStatus">Hut Status</string>
     <string name="hutBunks">Hut Bunks</string>
     <string name="hutBookable">Hut Bookable</string>
-    <string name="emptyString"></string>
 </resources>
