@@ -28,7 +28,6 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#CBD1C7"
                 app:imageUrl="@{hut.introductionThumbnail}"
                 tools:srcCompat="@tools:sample/avatars[12]" />
         </LinearLayout>
