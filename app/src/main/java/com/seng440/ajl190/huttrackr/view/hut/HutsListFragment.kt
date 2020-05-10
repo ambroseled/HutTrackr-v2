@@ -1,11 +1,12 @@
 package com.seng440.ajl190.huttrackr.view.hut
 
+import android.media.AudioManager
+import android.media.ToneGenerator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -74,8 +75,10 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
     }
 
     override fun onWishListClick(hut: HutResponse) {
-        Toast.makeText(requireContext(), "Wish list toggle for ${hut.name}", Toast.LENGTH_SHORT).show()
-        //todo Implement wish list saving functionality
+        // todo only make beep on is checked
+        val tone = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
+        tone.startTone(ToneGenerator.TONE_PROP_BEEP)
+        tone.release()
     }
 
     override fun onHutCardClick(hut: HutResponse, view: View) {

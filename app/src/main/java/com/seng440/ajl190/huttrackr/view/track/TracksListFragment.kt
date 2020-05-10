@@ -1,11 +1,12 @@
 package com.seng440.ajl190.huttrackr.view.track
 
+import android.media.AudioManager
+import android.media.ToneGenerator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -80,7 +81,9 @@ class TracksListFragment : ScopedFragment(), KodeinAware, TrackListClickListener
     }
 
     override fun onWishListClick(track: TrackResponse) {
-        Toast.makeText(requireContext(), "Wish list toggle for ${track.name}", Toast.LENGTH_SHORT).show()
+        val tone = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
+        tone.startTone(ToneGenerator.TONE_PROP_BEEP)
+        tone.release()
     }
 
 }
