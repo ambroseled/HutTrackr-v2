@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
+import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
 import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
 import com.seng440.ajl190.huttrackr.viewmodel.HutViewModel
@@ -54,6 +56,7 @@ class HutFragment : ScopedFragment(), KodeinAware {
     private fun bindUi() = launch {
         viewModel.setHut(assetId!!)
         val hut = viewModel.hut.await()
+        activity?.findViewById<Toolbar>(R.id.toolBar)?.title = hut.value?.name
         binding.hut = hut.value
         //detailedHutImage.startAnimation(AnimationUtils.loadAnimation(this, R.anim.bounce))
     }
