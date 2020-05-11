@@ -2,8 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
+    <item android:icon="@drawable/ic_wish_list"
+        android:title="@string/wishlist"
+        app:showAsAction="ifRoom"
+        android:id="@+id/wishListFragment"/>
+
+    <item android:icon="@drawable/ic_visited"
+        android:title="@string/visit"
+        app:showAsAction="ifRoom"
+        android:id="@+id/visitedFragment"/>
+
     <item android:icon="@drawable/ic_settings_green_24dp"
         android:title="@string/pref"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:id="@+id/preferencesFragment"/>
 </menu>

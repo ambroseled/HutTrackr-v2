@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/hutsListFragment"
         android:name="com.seng440.ajl190.huttrackr.view.hut.HutsListFragment"
-        android:label="huts_list_fragment"
+        android:label="Huts"
         tools:layout="@layout/huts_list_fragment">
         <action
             android:id="@+id/action_hutsListFragment_to_hutFragment"
@@ -20,22 +20,20 @@
     <fragment
         android:id="@+id/hutFragment"
         android:name="com.seng440.ajl190.huttrackr.view.hut.HutFragment"
-        android:label="hut_fragment"
         tools:layout="@layout/hut_fragment">
         <argument
             android:name="assetId"
-            app:argType="integer"
-             />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/preferencesFragment"
         android:name="com.seng440.ajl190.huttrackr.view.PreferencesFragment"
-        android:label="preferences_fragment"
+        android:label="Settings"
         tools:layout="@layout/preferences_fragment" />
     <fragment
         android:id="@+id/tracksListFragment"
         android:name="com.seng440.ajl190.huttrackr.view.track.TracksListFragment"
-        android:label="TracksListFragment" >
+        android:label="Tracks">
         <action
             android:id="@+id/action_tracksListFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
@@ -46,18 +44,25 @@
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.seng440.ajl190.huttrackr.view.MapsFragment"
-        android:label="maps_fragment"
+        android:label="Map"
         tools:layout="@layout/maps_fragment" />
     <fragment
         android:id="@+id/trackFragment"
-        android:name="com.seng440.ajl190.huttrackr.view.track.TrackFragment"
-        android:label="TrackFragment"
-        >
+        android:name="com.seng440.ajl190.huttrackr.view.track.TrackFragment">
         <argument
             android:name="assetId"
-            app:argType="string"
-            />
+            app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/visitedFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.VisitedFragment"
+        android:label="Visited"
+        tools:layout="@layout/visited_fragment" />
+    <fragment
+        android:id="@+id/wishListFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.WishListFragment"
+        android:label="Wish List"
+        tools:layout="@layout/wish_list_fragment" />
 
 
 </navigation>

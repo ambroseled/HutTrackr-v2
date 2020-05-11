@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">HutTrackr</string>
     <string name="visitButton">Add Visit</string>
+    <string name="visit">Visited</string>
     <string name="detailsButton">View Details</string>
     <string name="wishlist">Wishlist</string>
     <string name="huts">Huts</string>
     <string name="tracks">Tracks</string>
     <string name="pref">Preferences</string>
+    <string name="menu">Menu</string>
     <string name="map">Map</string>
     <string name="hutName">Hut Name</string>
     <string name="hutIntro">Hut Description</string>

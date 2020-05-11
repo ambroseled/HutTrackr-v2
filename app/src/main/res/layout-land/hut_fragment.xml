@@ -38,12 +38,28 @@
             app:maxImageSize="32dp" />
 
         <TextView
+            android:id="@+id/detailedHutName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="casual"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{hut.name}"/>
+
+        <TextView
             android:id="@+id/detailedHutIntro"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
             android:layout_weight="1"
             android:ellipsize="none"
             android:fontFamily="casual"
@@ -52,7 +68,7 @@
             android:text="@{hut.introduction}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/detailedHutName" />
 
         <LinearLayout
             android:id="@+id/leftLayout"
