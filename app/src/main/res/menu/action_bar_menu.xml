@@ -4,5 +4,6 @@
 
     <item android:icon="@drawable/ic_settings_green_24dp"
         android:title="@string/pref"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        android:id="@+id/preferencesFragment"/>
 </menu>

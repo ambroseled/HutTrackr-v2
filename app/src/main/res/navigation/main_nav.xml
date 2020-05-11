@@ -47,11 +47,7 @@
         android:id="@+id/mapsFragment"
         android:name="com.seng440.ajl190.huttrackr.view.MapsFragment"
         android:label="maps_fragment"
-        tools:layout="@layout/maps_fragment" >
-        <action
-            android:id="@+id/action_mapsFragment_to_preferencesFragment"
-            app:destination="@id/preferencesFragment" />
-    </fragment>
+        tools:layout="@layout/maps_fragment" />
     <fragment
         android:id="@+id/trackFragment"
         android:name="com.seng440.ajl190.huttrackr.view.track.TrackFragment"

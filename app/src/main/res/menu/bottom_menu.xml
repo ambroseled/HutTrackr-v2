@@ -13,8 +13,4 @@
         android:id="@+id/mapsFragment"
         android:icon="@drawable/ic_map_green_24dp"
         android:title="@string/map" />
-    <item
-        android:id="@+id/preferencesFragment"
-        android:icon="@drawable/ic_settings_green_24dp"
-        android:title="@string/pref" />
 </menu>

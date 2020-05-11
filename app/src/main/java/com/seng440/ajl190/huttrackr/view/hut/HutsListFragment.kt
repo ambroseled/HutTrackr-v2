@@ -92,5 +92,4 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
     }
 
 
-
 }
