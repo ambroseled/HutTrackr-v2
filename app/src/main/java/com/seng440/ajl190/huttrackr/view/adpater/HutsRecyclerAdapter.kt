@@ -28,8 +28,8 @@ class HutsRecyclerAdapter (
 
     override fun onBindViewHolder(holder: HutRecyclerViewHolder, position: Int) {
         holder.hutListItemBinding.hutResponse = huts[position]
-        holder.hutListItemBinding.wishCheckHutList.setOnClickListener {
-            listClickListener.onWishListClick(huts[position])
+        holder.hutListItemBinding.wishSwitchHutList.setOnClickListener {
+            listClickListener.onWishListClick(huts[position], holder.hutListItemBinding.wishSwitchHutList)
         }
         holder.hutListItemBinding.moreInfoIconHut.setOnClickListener {
             listClickListener.onMoreInfoClick(huts[position])

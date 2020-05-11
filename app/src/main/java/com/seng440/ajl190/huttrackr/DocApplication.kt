@@ -4,10 +4,7 @@ import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.seng440.ajl190.huttrackr.data.DocDatabase
 import com.seng440.ajl190.huttrackr.data.network.*
-import com.seng440.ajl190.huttrackr.data.repository.HutRepository
-import com.seng440.ajl190.huttrackr.data.repository.HutRepositoryImpl
-import com.seng440.ajl190.huttrackr.data.repository.TrackRepository
-import com.seng440.ajl190.huttrackr.data.repository.TrackRepositoryImpl
+import com.seng440.ajl190.huttrackr.data.repository.*
 import com.seng440.ajl190.huttrackr.viewmodel.factory.HutViewModelFactory
 import com.seng440.ajl190.huttrackr.viewmodel.factory.HutsListViewModelFactory
 import com.seng440.ajl190.huttrackr.viewmodel.factory.TrackViewModelFactory
@@ -29,12 +26,15 @@ class DocApplication: Application(), KodeinAware {
         bind() from singleton { DocDatabase(instance()) }
         bind() from singleton { instance<DocDatabase>().hutDao() }
         bind() from singleton { instance<DocDatabase>().trackDao() }
+        bind() from singleton { instance<DocDatabase>().wishHutItemDao() }
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
         bind() from singleton { DocApiService(instance()) }
         bind<DocApiDataSource>() with singleton { DocApiDataSourceImpl(instance()) }
 
         bind<HutRepository>() with singleton { HutRepositoryImpl(instance(), instance()) }
-        bind() from provider { HutsListViewModelFactory(instance()) }
+        bind<WishHutItemRepository>() with singleton { WishHutItemRepositoryImpl(instance()) }
+
+        bind() from provider { HutsListViewModelFactory(instance(), instance()) }
         bind() from provider { HutViewModelFactory(instance()) }
 
         bind<TrackRepository>() with singleton { TrackRepositoryImpl(instance(), instance()) }
