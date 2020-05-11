@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
 import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
@@ -51,6 +53,11 @@ class HutFragment : ScopedFragment(), KodeinAware {
         } else {
             // todo handle this case gracefully
         }
+
+        // todo this logic will be used for notifications
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val notifications = sharedPreferences.getBoolean("notifications", true)
+        Toast.makeText(requireContext(), "Pref value: $notifications", Toast.LENGTH_SHORT).show()
     }
 
     private fun bindUi() = launch {
