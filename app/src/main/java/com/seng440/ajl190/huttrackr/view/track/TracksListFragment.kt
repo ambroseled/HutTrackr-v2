@@ -90,15 +90,28 @@ class TracksListFragment : ScopedFragment(), KodeinAware, TrackListClickListener
     }
 
     override fun onWishListClick(track: TrackResponse, switch: Switch) {
-        // todo need to handle track region
         if (switch.isChecked) {
-            viewModel.insertWishHutItem(WishItem(track.assetId, track.name, "", "", "hut"))
+            viewModel.insertWishHutItem(WishItem(track.assetId, track.name, convertRegion(track.region), "", "hut"))
             val tone = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
             tone.startTone(ToneGenerator.TONE_PROP_BEEP)
             tone.release()
         } else {
-            viewModel.deleteWishHutItem(WishItem(track.assetId, track.name, "", "", "hut"))
+            viewModel.deleteWishHutItem(WishItem(track.assetId, track.name, convertRegion(track.region), "", "hut"))
         }
+    }
+
+    /**
+     * Function the list of regions in a track to a string
+     */
+    private fun convertRegion(regions: List<String>): String {
+        var outputRegions = ""
+        for (region in regions) {
+            if (outputRegions != "") {
+                outputRegions += ", "
+            }
+            outputRegions += region
+        }
+        return outputRegions
     }
 
 }
