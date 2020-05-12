@@ -3,12 +3,12 @@ package com.seng440.ajl190.huttrackr.viewmodel.factory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.seng440.ajl190.huttrackr.data.repository.HutRepository
-import com.seng440.ajl190.huttrackr.data.repository.WishHutItemRepository
+import com.seng440.ajl190.huttrackr.data.repository.WishItemRepository
 import com.seng440.ajl190.huttrackr.viewmodel.HutsListViewModel
 
 class HutsListViewModelFactory(
     private val hutRepository: HutRepository,
-    private val wishRepository: WishHutItemRepository
+    private val wishRepository: WishItemRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")

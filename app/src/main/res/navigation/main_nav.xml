@@ -62,7 +62,11 @@
         android:id="@+id/wishListFragment"
         android:name="com.seng440.ajl190.huttrackr.view.WishListFragment"
         android:label="Wish List"
-        tools:layout="@layout/wish_list_fragment" />
+        tools:layout="@layout/wish_list_fragment" >
+        <action
+            android:id="@+id/action_wishListFragment_to_hutFragment"
+            app:destination="@id/hutFragment" />
+    </fragment>
 
 
 </navigation>

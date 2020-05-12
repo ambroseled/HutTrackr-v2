@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.data.model.HutResponse
-import com.seng440.ajl190.huttrackr.data.model.WishHutItem
+import com.seng440.ajl190.huttrackr.data.model.WishItem
 import com.seng440.ajl190.huttrackr.utils.listener.HutListClickListener
 import com.seng440.ajl190.huttrackr.view.adpater.HutsRecyclerAdapter
 import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
@@ -83,12 +83,12 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
 
     override fun onWishListClick(hut: HutResponse, switch: Switch) {
         if (switch.isChecked) {
-            viewModel.insertWishHutItem(WishHutItem(hut.assetId, hut.name, hut.region, hut.status))
+            viewModel.insertWishHutItem(WishItem(hut.assetId.toString(), hut.name, hut.region, hut.status, "hut"))
             val tone = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
             tone.startTone(ToneGenerator.TONE_PROP_BEEP)
             tone.release()
         } else {
-            viewModel.deleteWishHutItem(WishHutItem(hut.assetId, hut.name, hut.region, hut.status))
+            viewModel.deleteWishHutItem(WishItem(hut.assetId.toString(), hut.name, hut.region, hut.status, "hut"))
         }
 
     }

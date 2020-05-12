@@ -30,7 +30,7 @@ class TracksRecyclerAdapter (
     override fun onBindViewHolder(holder: TrackRecyclerViewHolder, position: Int) {
         holder.trackListItemBinding.trackResponse = tracks[position]
         holder.trackListItemBinding.wishSwitchTrackList.setOnClickListener {
-            listClickListener.onWishListClick(tracks[position])
+            listClickListener.onWishListClick(tracks[position], holder.trackListItemBinding.wishSwitchTrackList)
         }
         holder.trackListItemBinding.moreInfoIconTrack.setOnClickListener {
             listClickListener.onMoreInfoClick(tracks[position])

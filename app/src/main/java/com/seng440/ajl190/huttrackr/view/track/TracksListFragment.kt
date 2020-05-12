@@ -8,12 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Switch
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.data.model.TrackResponse
+import com.seng440.ajl190.huttrackr.data.model.WishItem
 import com.seng440.ajl190.huttrackr.utils.listener.TrackListClickListener
 import com.seng440.ajl190.huttrackr.view.adpater.TracksRecyclerAdapter
 import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
@@ -87,10 +89,16 @@ class TracksListFragment : ScopedFragment(), KodeinAware, TrackListClickListener
         navController.navigate(action)
     }
 
-    override fun onWishListClick(track: TrackResponse) {
-        val tone = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
-        tone.startTone(ToneGenerator.TONE_PROP_BEEP)
-        tone.release()
+    override fun onWishListClick(track: TrackResponse, switch: Switch) {
+        // todo need to handle track region
+        if (switch.isChecked) {
+            viewModel.insertWishHutItem(WishItem(track.assetId, track.name, "", "", "hut"))
+            val tone = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
+            tone.startTone(ToneGenerator.TONE_PROP_BEEP)
+            tone.release()
+        } else {
+            viewModel.deleteWishHutItem(WishItem(track.assetId, track.name, "", "", "hut"))
+        }
     }
 
 }

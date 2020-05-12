@@ -6,16 +6,16 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "wish_hut_item"
+@Entity(tableName = "wish_item"
 //    foreignKeys = [ForeignKey(entity = HutResponse::class,
 //    parentColumns = arrayOf("assetId"),
-//    childColumns = arrayOf("hutId"),
+//    childColumns = arrayOf("id"),
 //    onDelete = ForeignKey.CASCADE)]
 )
-data class WishHutItem(
+data class WishItem(
     @PrimaryKey
-    @ColumnInfo(name = "hut_id")
-    val hutId: Int,
+    @ColumnInfo(name = "id")
+    val id: String,
 
     @ColumnInfo(name = "name")
     val name: String?,
@@ -25,6 +25,9 @@ data class WishHutItem(
     val region: String?,
 
     @ColumnInfo(name = "status")
-    val status: String
-    )
+    val status: String,
+
+    @ColumnInfo(name = "type")
+    val type: String
+)
 
