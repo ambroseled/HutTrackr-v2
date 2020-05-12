@@ -1,5 +1,6 @@
 package com.seng440.ajl190.huttrackr.view.hut
 
+import android.content.res.Configuration
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
@@ -55,10 +56,16 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
     }
 
     private fun bindRecyclerList() = launch {
+        val orientation = requireContext().resources.configuration.orientation
+        var gridSize = 2
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            gridSize = 4
+        }
+
         val returnedHuts = viewModel.huts.await()
         returnedHuts.observe(viewLifecycleOwner, Observer {huts ->
             recycler_view_huts.also {
-                it.layoutManager = GridLayoutManager(requireContext(), 2)
+                it.layoutManager = GridLayoutManager(requireContext(), gridSize)
                 it.setHasFixedSize(true)
                 it.adapter =
                     HutsRecyclerAdapter(huts, this@HutsListFragment)

@@ -1,5 +1,6 @@
 package com.seng440.ajl190.huttrackr.view.track
 
+import android.content.res.Configuration
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
@@ -50,10 +51,16 @@ class TracksListFragment : ScopedFragment(), KodeinAware, TrackListClickListener
     }
 
     private fun bindRecyclerView() = launch {
+        val orientation = requireContext().resources.configuration.orientation
+        var gridSize = 2
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            gridSize = 4
+        }
+
         val returnedTracks = viewModel.tracks.await()
         returnedTracks.observe(viewLifecycleOwner, Observer {tracks ->
             recycler_view_tracks.also {
-                it.layoutManager = GridLayoutManager(requireContext(), 2)
+                it.layoutManager = GridLayoutManager(requireContext(), gridSize)
                 it.setHasFixedSize(true)
                 it.adapter =
                     TracksRecyclerAdapter(tracks, this@TracksListFragment)
