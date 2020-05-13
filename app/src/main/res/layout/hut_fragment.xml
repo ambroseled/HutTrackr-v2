@@ -42,17 +42,45 @@
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/wishActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_23"
+            android:clickable="true"
+            android:src="@drawable/ic_wish_list"
+            android:visibility="gone"
+            app:borderWidth="0.5dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/visitActionButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="32dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/visitActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_23"
+            android:clickable="true"
+            android:src="@drawable/ic_visited"
+            android:visibility="gone"
+            app:borderWidth="0.5dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="32dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_margin="@dimen/fab_margin"
             android:clickable="true"
             android:src="@drawable/ic_hands_and_gestures"
             app:borderWidth="0.5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:maxImageSize="32dp" />
+            app:maxImageSize="32dp"
+            app:fabSize="normal"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="409dp"

@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.seng440.ajl190.huttrackr.R
+import com.seng440.ajl190.huttrackr.data.model.VisitItem
+import com.seng440.ajl190.huttrackr.data.model.WishItem
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
 import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
 import com.seng440.ajl190.huttrackr.viewmodel.HutViewModel
@@ -29,6 +33,10 @@ class HutFragment : ScopedFragment(), KodeinAware {
     private lateinit var viewModel: HutViewModel
     private var assetId: Int? = -1
     private var _binding: HutFragmentBinding? = null
+    private var isFabOpen: Boolean = false
+    private lateinit var mainFab: FloatingActionButton
+    private lateinit var visitFab: FloatingActionButton
+    private lateinit var wishFab: FloatingActionButton
 
     private val binding get() = _binding!!
 
@@ -55,7 +63,53 @@ class HutFragment : ScopedFragment(), KodeinAware {
         // todo this logic will be used for notifications
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val notifications = sharedPreferences.getBoolean("notifications", true)
-        Toast.makeText(requireContext(), "Pref value: $notifications", Toast.LENGTH_SHORT).show()
+
+        mainFab = activity!!.findViewById(R.id.floatingActionButton)
+        visitFab = activity!!.findViewById(R.id.visitActionButton)
+        wishFab = activity!!.findViewById(R.id.wishActionButton)
+
+        mainFab.setOnClickListener {
+            if (!isFabOpen) {
+                openFabMenu()
+            } else {
+                closeFabMenu()
+            }
+        }
+
+        visitFab.setOnClickListener {
+            addVisit()
+            closeFabMenu()
+            Toast.makeText(requireContext(), "Visit added", Toast.LENGTH_LONG).show()
+        }
+
+        wishFab.setOnClickListener {
+            addHutToWishList()
+            closeFabMenu()
+            Toast.makeText(requireContext(), "Added to wish list", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun addVisit() = launch {
+        val hut = viewModel.hut.await().value!!
+        viewModel.saveVisit(VisitItem(-1, hut.name, hut.region, "hut", hut.introductionThumbnail))
+    }
+
+    private fun addHutToWishList() =launch {
+        val hut = viewModel.hut.await().value!!
+        viewModel.saveWish(WishItem(hut.assetId.toString(), hut.name, hut.region, hut.status, "hut"))
+
+    }
+
+    private fun closeFabMenu() {
+        isFabOpen = false
+        visitFab.visibility = View.GONE
+        wishFab.visibility = View.GONE
+    }
+
+    private fun openFabMenu() {
+        isFabOpen = true
+        visitFab.visibility = View.VISIBLE
+        wishFab.visibility = View.VISIBLE
     }
 
     private fun bindUi() = launch {

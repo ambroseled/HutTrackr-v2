@@ -97,6 +97,7 @@ class WishListFragment : ScopedFragment(), KodeinAware, WishListClickListener {
     override fun onMoreInfoClick(hut: WishItem) {
         val navController = this.findNavController()
         val action = WishListFragmentDirections.actionWishListFragmentToHutFragment(hut.id.toInt())
-        navController.navigate(action)    }
+        navController.navigate(action)
+    }
 
 }

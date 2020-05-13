@@ -7,18 +7,21 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.seng440.ajl190.huttrackr.data.dao.HutDao
 import com.seng440.ajl190.huttrackr.data.dao.TrackDao
+import com.seng440.ajl190.huttrackr.data.dao.VisitDao
 import com.seng440.ajl190.huttrackr.data.dao.WishDao
 import com.seng440.ajl190.huttrackr.data.model.HutResponse
 import com.seng440.ajl190.huttrackr.data.model.TrackResponse
+import com.seng440.ajl190.huttrackr.data.model.VisitItem
 import com.seng440.ajl190.huttrackr.data.model.WishItem
 
-@Database(entities = [HutResponse::class, TrackResponse::class, WishItem::class], version = 9, exportSchema = false)
+@Database(entities = [HutResponse::class, TrackResponse::class, WishItem::class, VisitItem::class], version = 11, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class DocDatabase : RoomDatabase() {
 
     abstract fun hutDao(): HutDao
     abstract fun trackDao(): TrackDao
     abstract fun wishHutItemDao(): WishDao
+    abstract fun visitItemDao(): VisitDao
 
     companion object {
 

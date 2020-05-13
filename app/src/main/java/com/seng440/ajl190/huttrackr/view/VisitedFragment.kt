@@ -4,12 +4,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import android.view.animation.AnimationUtils
+import android.widget.Switch
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.seng440.ajl190.huttrackr.R
+import com.seng440.ajl190.huttrackr.data.model.VisitItem
+import com.seng440.ajl190.huttrackr.utils.listener.VisitClickListener
+import com.seng440.ajl190.huttrackr.view.adpater.VisitRecyclerAdapter
+import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
+import com.seng440.ajl190.huttrackr.view.decorator.GridSpacingItemDecoration
 import com.seng440.ajl190.huttrackr.viewmodel.VisitedViewModel
+import com.seng440.ajl190.huttrackr.viewmodel.factory.VisitViewModelFactory
+import kotlinx.android.synthetic.main.visited_fragment.*
+import kotlinx.coroutines.launch
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 
-class VisitedFragment : Fragment() {
+class VisitedFragment : ScopedFragment(), KodeinAware, VisitClickListener {
+
+
+    override val kodein: Kodein by kodein()
+    private val viewModelFactory: VisitViewModelFactory by instance()
+
 
     companion object {
         fun newInstance() = VisitedFragment()
@@ -26,8 +46,41 @@ class VisitedFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(VisitedViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel = ViewModelProvider(this, viewModelFactory).get(VisitedViewModel::class.java)
+
+        bindRecyclerList()
     }
 
+    private fun bindRecyclerList() = launch {
+        var gridSize = 1
+        val returnedVisits = viewModel.visits.await()
+        returnedVisits.observe(viewLifecycleOwner, Observer {visits ->
+            recycler_view_visit.also {
+                it.layoutManager = GridLayoutManager(requireContext(), gridSize)
+                it.setHasFixedSize(true)
+                it.adapter =
+                    VisitRecyclerAdapter(visits, this@VisitedFragment)
+                it.addItemDecoration(
+                    GridSpacingItemDecoration(
+                        2,
+                        20,
+                        true
+                    )
+                )
+            }
+
+        })
+    }
+
+    override fun onWishListClick(visit: VisitItem, switch: Switch) {
+        //todo implement wish insert delete functionality
+    }
+
+    override fun onVisitCardClick(visit: VisitItem, view: View) {
+        view.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.bounce))
+    }
+
+    override fun onMoreInfoClick(visit: VisitItem) {
+
+    }
 }

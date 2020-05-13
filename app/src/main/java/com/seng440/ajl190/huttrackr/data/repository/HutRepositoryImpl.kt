@@ -23,7 +23,7 @@ class HutRepositoryImpl(
 
     override suspend fun getAllHuts(): LiveData<List<HutResponse>> {
         return withContext(Dispatchers.IO) {
-            fetchHutsIfNeeded()
+            //fetchHutsIfNeeded()
             return@withContext dao.getHuts()
         }
     }
@@ -36,7 +36,7 @@ class HutRepositoryImpl(
     }
 
     private suspend fun fetchHutsIfNeeded() {
-        //docApiDataSource.fetchHuts()
+        docApiDataSource.fetchHuts()
     }
 
     private fun saveHuts(fetchedHuts: List<HutResponse>) {
