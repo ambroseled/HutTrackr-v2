@@ -28,8 +28,8 @@ class VisitRecyclerAdapter (
 
     override fun onBindViewHolder(holder: VisitRecyclerViewHolder, position: Int) {
         holder.visitItemBinding.visit = visits[position]
-        holder.visitItemBinding.wishSwitchVisit.setOnClickListener {
-            listClickListener.onWishListClick(visits[position], holder.visitItemBinding.wishSwitchVisit)
+        holder.visitItemBinding.deleteVisit.setOnClickListener {
+            listClickListener.onDeleteClick(visits[position])
         }
         holder.visitItemBinding.moreInfoIconVisit.setOnClickListener {
             listClickListener.onMoreInfoClick(visits[position])

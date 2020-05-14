@@ -91,12 +91,12 @@ class TracksListFragment : ScopedFragment(), KodeinAware, TrackListClickListener
 
     override fun onWishListClick(track: TrackResponse, switch: Switch) {
         if (switch.isChecked) {
-            viewModel.insertWishHutItem(WishItem(track.assetId, track.name, convertRegion(track.region), "", "hut"))
+            viewModel.insertWishHutItem(WishItem(track.assetId, track.name, convertRegion(track.region), "track"))
             val tone = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
             tone.startTone(ToneGenerator.TONE_PROP_BEEP)
             tone.release()
         } else {
-            viewModel.deleteWishHutItem(WishItem(track.assetId, track.name, convertRegion(track.region), "", "hut"))
+            viewModel.deleteWishHutItem(WishItem(track.assetId, track.name, convertRegion(track.region),  "track"))
         }
     }
 

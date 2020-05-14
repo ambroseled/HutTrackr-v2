@@ -55,22 +55,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/hutNameRecycler" />
 
-            <TextView
-                android:id="@+id/hutStatusRecycler"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:drawableStart="@drawable/ic_vpn_key_green_12dp"
-                android:drawablePadding="8dp"
-                android:fontFamily="casual"
-                android:text="@{wishItem.status}"
-                android:textAppearance="@style/AppTheme"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hutRegionRecycler" />
-
             <Switch
                 android:id="@+id/wishSwitchHutList"
                 style="@style/AppTheme"

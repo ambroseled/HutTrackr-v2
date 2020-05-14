@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.Switch
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.data.model.VisitItem
@@ -25,7 +25,6 @@ import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 
 class VisitedFragment : ScopedFragment(), KodeinAware, VisitClickListener {
-
 
     override val kodein: Kodein by kodein()
     private val viewModelFactory: VisitViewModelFactory by instance()
@@ -72,15 +71,22 @@ class VisitedFragment : ScopedFragment(), KodeinAware, VisitClickListener {
         })
     }
 
-    override fun onWishListClick(visit: VisitItem, switch: Switch) {
-        //todo implement wish insert delete functionality
-    }
-
     override fun onVisitCardClick(visit: VisitItem, view: View) {
         view.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.bounce))
     }
 
     override fun onMoreInfoClick(visit: VisitItem) {
+        val navController = this.findNavController()
+        if (visit.type == "hut") {
+            val action = VisitedFragmentDirections.actionVisitedFragmentToHutFragment(visit.assetId.toInt())
+            navController.navigate(action)
+        } else {
+            val action = VisitedFragmentDirections.actionVisitedFragmentToTrackFragment(visit.assetId)
+            navController.navigate(action)
+        }
+    }
 
+    override fun onDeleteClick(visit: VisitItem) {
+        viewModel.deleteVisitItem(visit)
     }
 }

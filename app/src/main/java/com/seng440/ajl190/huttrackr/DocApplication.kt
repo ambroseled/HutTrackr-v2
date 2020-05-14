@@ -42,7 +42,7 @@ class DocApplication: Application(), KodeinAware {
         bind() from provider { HutsListViewModelFactory(instance(), instance()) }
         bind() from provider { HutViewModelFactory(instance(), instance(), instance()) }
         bind() from provider { TracksListViewModelFactory(instance(), instance()) }
-        bind() from provider { TrackViewModelFactory(instance()) }
+        bind() from provider { TrackViewModelFactory(instance(), instance(), instance()) }
         bind() from provider { WishListViewModelFactory(instance()) }
         bind() from provider { VisitViewModelFactory(instance(), instance()) }
 

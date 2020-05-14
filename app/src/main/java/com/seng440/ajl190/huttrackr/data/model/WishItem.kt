@@ -24,9 +24,6 @@ data class WishItem(
     @Nullable
     val region: String?,
 
-    @ColumnInfo(name = "status")
-    val status: String,
-
     @ColumnInfo(name = "type")
     val type: String
 )

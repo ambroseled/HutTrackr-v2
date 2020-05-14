@@ -79,25 +79,30 @@ class WishListFragment : ScopedFragment(), KodeinAware, WishListClickListener {
         })
     }
 
-    override fun onWishListClick(hut: WishItem, switch: Switch) {
+    override fun onWishListClick(wishItem: WishItem, switch: Switch) {
         if (switch.isChecked) {
-            viewModel.insertWishHutItem(WishItem(hut.id, hut.name, hut.region, hut.status, "hut"))
+            viewModel.insertWishHutItem(wishItem)
             val tone = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
             tone.startTone(ToneGenerator.TONE_PROP_BEEP)
             tone.release()
         } else {
-            viewModel.deleteWishHutItem(WishItem(hut.id, hut.name, hut.region, hut.status, "hut"))
+            viewModel.deleteWishHutItem(wishItem)
         }
     }
 
-    override fun onHutCardClick(hut: WishItem, view: View) {
+    override fun onHutCardClick(wishItem: WishItem, view: View) {
         view.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.bounce))
     }
 
-    override fun onMoreInfoClick(hut: WishItem) {
+    override fun onMoreInfoClick(wishItem: WishItem) {
         val navController = this.findNavController()
-        val action = WishListFragmentDirections.actionWishListFragmentToHutFragment(hut.id.toInt())
-        navController.navigate(action)
+        if (wishItem.type == "hut") {
+            val action = WishListFragmentDirections.actionWishListFragmentToHutFragment(wishItem.id.toInt())
+            navController.navigate(action)
+        } else {
+            val action = WishListFragmentDirections.actionWishListFragmentToTrackFragment(wishItem.id)
+            navController.navigate(action)
+        }
     }
 
 }

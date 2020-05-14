@@ -6,9 +6,9 @@ import com.seng440.ajl190.huttrackr.data.model.WishItem
 
 interface WishListClickListener {
 
-    fun onWishListClick(hut: WishItem, switch: Switch)
+    fun onWishListClick(wishItem: WishItem, switch: Switch)
 
-    fun onHutCardClick(hut: WishItem, view: View)
+    fun onHutCardClick(wishItem: WishItem, view: View)
 
-    fun onMoreInfoClick(hut: WishItem)
+    fun onMoreInfoClick(wishItem: WishItem)
 }

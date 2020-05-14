@@ -57,7 +57,14 @@
         android:id="@+id/visitedFragment"
         android:name="com.seng440.ajl190.huttrackr.view.VisitedFragment"
         android:label="Visited"
-        tools:layout="@layout/visited_fragment" />
+        tools:layout="@layout/visited_fragment" >
+        <action
+            android:id="@+id/action_visitedFragment_to_trackFragment"
+            app:destination="@id/trackFragment" />
+        <action
+            android:id="@+id/action_visitedFragment_to_hutFragment"
+            app:destination="@id/hutFragment" />
+    </fragment>
     <fragment
         android:id="@+id/wishListFragment"
         android:name="com.seng440.ajl190.huttrackr.view.WishListFragment"
@@ -66,6 +73,9 @@
         <action
             android:id="@+id/action_wishListFragment_to_hutFragment"
             app:destination="@id/hutFragment" />
+        <action
+            android:id="@+id/action_wishListFragment_to_trackFragment"
+            app:destination="@id/trackFragment" />
     </fragment>
 
 

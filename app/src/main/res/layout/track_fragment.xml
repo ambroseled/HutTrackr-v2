@@ -24,6 +24,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/detailedTrackName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="@{track.name}"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
             <ImageView
                 android:id="@+id/trackImage"
                 android:layout_width="match_parent"
@@ -33,17 +42,45 @@
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/wishActionButtonTrack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_23"
+            android:clickable="true"
+            android:src="@drawable/ic_wish_list"
+            android:visibility="gone"
+            app:borderWidth="0.5dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/visitActionButtonTrack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="32dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/visitActionButtonTrack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_23"
+            android:clickable="true"
+            android:src="@drawable/ic_visited"
+            android:visibility="gone"
+            app:borderWidth="0.5dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/floatingActionButtonTrack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="32dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButtonTrack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_margin="@dimen/fab_margin"
             android:clickable="true"
             android:src="@drawable/ic_hands_and_gestures"
             app:borderWidth="0.5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:maxImageSize="32dp" />
+            app:maxImageSize="32dp"
+            app:fabSize="normal"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="409dp"
@@ -81,6 +118,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/detailedTrackIntro">
 
 
+                <TextView
+                    android:id="@+id/detailedHutDistance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_distance_24"
+                    android:drawablePadding="8dp"
+                    android:text="@{track.distance}" />
+
+                <TextView
+                    android:id="@+id/dettailedTrackDuration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/ic_duration_24dp"
+                    android:drawablePadding="8dp"
+                    android:text="@{track.walkDuration}" />
             </LinearLayout>
 
             <LinearLayout
@@ -94,6 +147,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/detailedTrackIntro">
 
 
+                <TextView
+                    android:id="@+id/detailedTrackDog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_dog_24"
+                    android:drawablePadding="8dp"
+                    android:text="@{track.dogsAllowed}" />
+
+                <TextView
+                    android:id="@+id/detailedTrackRegion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/ic_location_on_green_24dp"
+                    android:drawablePadding="8dp"
+                    android:text="@{track.region[0]}" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

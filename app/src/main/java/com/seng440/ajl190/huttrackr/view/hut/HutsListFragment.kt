@@ -83,12 +83,12 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
 
     override fun onWishListClick(hut: HutResponse, switch: Switch) {
         if (switch.isChecked) {
-            viewModel.insertWishHutItem(WishItem(hut.assetId.toString(), hut.name, hut.region, hut.status, "hut"))
+            viewModel.insertWishHutItem(WishItem(hut.assetId.toString(), hut.name, hut.region, "hut"))
             val tone = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
             tone.startTone(ToneGenerator.TONE_PROP_BEEP)
             tone.release()
         } else {
-            viewModel.deleteWishHutItem(WishItem(hut.assetId.toString(), hut.name, hut.region, hut.status, "hut"))
+            viewModel.deleteWishHutItem(WishItem(hut.assetId.toString(), hut.name, hut.region, "hut"))
         }
 
     }

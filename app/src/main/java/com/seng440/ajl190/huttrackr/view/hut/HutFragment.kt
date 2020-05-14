@@ -91,12 +91,12 @@ class HutFragment : ScopedFragment(), KodeinAware {
 
     private fun addVisit() = launch {
         val hut = viewModel.hut.await().value!!
-        viewModel.saveVisit(VisitItem(-1, hut.name, hut.region, "hut", hut.introductionThumbnail))
+        viewModel.saveVisit(VisitItem(0, hut.name, hut.region, "hut", hut.introductionThumbnail, hut.assetId.toString()))
     }
 
     private fun addHutToWishList() =launch {
         val hut = viewModel.hut.await().value!!
-        viewModel.saveWish(WishItem(hut.assetId.toString(), hut.name, hut.region, hut.status, "hut"))
+        viewModel.saveWish(WishItem(hut.assetId.toString(), hut.name, hut.region, "hut"))
 
     }
 
@@ -116,7 +116,6 @@ class HutFragment : ScopedFragment(), KodeinAware {
         viewModel.setHut(assetId!!)
         val hut = viewModel.hut.await()
         binding.hut = hut.value
-        //detailedHutImage.startAnimation(AnimationUtils.loadAnimation(this, R.anim.bounce))
     }
 
 }

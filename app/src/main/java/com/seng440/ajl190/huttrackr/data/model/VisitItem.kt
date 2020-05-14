@@ -23,5 +23,8 @@ data class VisitItem(
     val type: String,
 
     @ColumnInfo(name = "image")
-    val image: String
+    val image: String,
+
+    @ColumnInfo(name = "asset_id")
+    val assetId: String
 )

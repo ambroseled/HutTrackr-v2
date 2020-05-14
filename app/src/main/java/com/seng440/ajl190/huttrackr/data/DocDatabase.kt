@@ -14,7 +14,7 @@ import com.seng440.ajl190.huttrackr.data.model.TrackResponse
 import com.seng440.ajl190.huttrackr.data.model.VisitItem
 import com.seng440.ajl190.huttrackr.data.model.WishItem
 
-@Database(entities = [HutResponse::class, TrackResponse::class, WishItem::class, VisitItem::class], version = 11, exportSchema = false)
+@Database(entities = [HutResponse::class, TrackResponse::class, WishItem::class, VisitItem::class], version = 13, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class DocDatabase : RoomDatabase() {
 
