@@ -20,6 +20,7 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import java.util.*
 
 
 class HutFragment : ScopedFragment(), KodeinAware {
@@ -91,7 +92,7 @@ class HutFragment : ScopedFragment(), KodeinAware {
 
     private fun addVisit() = launch {
         val hut = viewModel.hut.await().value!!
-        viewModel.saveVisit(VisitItem(0, hut.name, hut.region, "hut", hut.introductionThumbnail, hut.assetId.toString()))
+        viewModel.saveVisit(VisitItem(0, hut.name, hut.region, Date(),"hut", hut.introductionThumbnail, hut.assetId.toString()))
     }
 
     private fun addHutToWishList() =launch {

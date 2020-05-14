@@ -19,6 +19,7 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import java.util.*
 
 class TrackFragment : ScopedFragment(), KodeinAware {
 
@@ -92,7 +93,8 @@ class TrackFragment : ScopedFragment(), KodeinAware {
 
     private fun addVisit() = launch {
         val track = viewModel.track.await().value!!
-        viewModel.saveVisit(VisitItem(0, track.name, convertRegion(track.region), "track", track.introductionThumbnail, track.assetId))
+        viewModel.saveVisit(VisitItem(0, track.name, convertRegion(track.region), Date(),
+            "track", track.introductionThumbnail, track.assetId))
     }
 
     private fun addHutToWishList() =launch {

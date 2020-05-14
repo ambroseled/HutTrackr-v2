@@ -3,8 +3,12 @@ package com.seng440.ajl190.huttrackr.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.seng440.ajl190.huttrackr.data.converter.DateConverter
+import java.util.*
 
 @Entity(tableName = "visit_item")
+@TypeConverters(DateConverter::class)
 data class VisitItem(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "visit_id")
@@ -16,8 +20,8 @@ data class VisitItem(
     @ColumnInfo(name = "region")
     val region: String,
 
-//    @ColumnInfo(name = "date")
-//    val date: Date,
+    @ColumnInfo(name = "date")
+    val date: Date,
 
     @ColumnInfo(name = "type")
     val type: String,
