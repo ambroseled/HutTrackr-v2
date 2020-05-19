@@ -1,13 +1,20 @@
 package com.seng440.ajl190.huttrackr.view.hut
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context.NOTIFICATION_SERVICE
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.data.model.VisitItem
 import com.seng440.ajl190.huttrackr.data.model.WishItem
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
@@ -37,6 +44,10 @@ class HutFragment : ScopedFragment(), KodeinAware {
     private lateinit var mainFab: FloatingActionButton
     private lateinit var visitFab: FloatingActionButton
     private lateinit var wishFab: FloatingActionButton
+    private lateinit var notificationManager: NotificationManager
+    private lateinit var notificationChannel: NotificationChannel
+    private lateinit var notificationBuilder: Notification.Builder
+    private val channelId = "com.seng440.ajl190.hutTrackr"
 
     private val binding get() = _binding!!
 
@@ -53,7 +64,7 @@ class HutFragment : ScopedFragment(), KodeinAware {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory).get(HutViewModel::class.java)
         assetId = arguments?.getInt("assetId")
-
+        notificationManager = activity?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         if (assetId != -1) {
             bindUi()
             checkForAlerts()
@@ -61,9 +72,10 @@ class HutFragment : ScopedFragment(), KodeinAware {
             Toast.makeText(requireContext(), "Something went wrong please try again", Toast.LENGTH_LONG).show()
         }
 
-        mainFab = activity!!.findViewById(R.id.floatingActionButton)
-        visitFab = activity!!.findViewById(R.id.visitActionButton)
-        wishFab = activity!!.findViewById(R.id.wishActionButton)
+
+        mainFab = activity!!.findViewById(com.seng440.ajl190.huttrackr.R.id.floatingActionButton)
+        visitFab = activity!!.findViewById(com.seng440.ajl190.huttrackr.R.id.visitActionButton)
+        wishFab = activity!!.findViewById(com.seng440.ajl190.huttrackr.R.id.wishActionButton)
 
         mainFab.setOnClickListener {
             if (!isFabOpen) {
@@ -116,25 +128,40 @@ class HutFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun checkForAlerts() = launch {
-//        val alerts = viewModel.alerts.await()
-//        if (alerts.value != null) {
-//            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-//            val notifications = sharedPreferences.getBoolean("notifications", true)
-//            if (notifications) {
-//                var builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
-//                    .setSmallIcon(R.drawable.notification_icon)
-//                    .setContentTitle("My notification")
-//                    .setContentText("Much longer text that cannot fit one line...")
-//                    .setStyle(NotificationCompat.BigTextStyle()
-//                        .bigText("Much longer text that cannot fit one line..."))
-//                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-//
-//                with(NotificationManagerCompat.from(requireContext())) {
-//                    // notificationId is a unique int for each notification that you must define
-//                    notify(notificationId, builder.build())
-//                }
-//            }
-//        }
+        val alerts = viewModel.alerts.await()
+        val hut = viewModel.hut.await()
+        if (alerts.value != null) {
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+            val notifications = sharedPreferences.getBoolean("notifications", true)
+            if (notifications) {
+                for (alert in alerts.value!![0].alerts) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        val name = "not_name"
+                        val descriptionText = "not_description"
+                        val importance = NotificationManager.IMPORTANCE_DEFAULT
+                        val channel = NotificationChannel(channelId, name, importance).apply {
+                            description = descriptionText
+                        }
+                        notificationManager.createNotificationChannel(channel)
+
+                        val builder = NotificationCompat.Builder(requireContext(), channelId)
+                            .setSmallIcon(com.seng440.ajl190.huttrackr.R.mipmap.ic_launcher)
+                            .setContentTitle("Alert for ${hut.value?.name}")
+                            .setContentText(alert.heading)
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                            // Set the intent that will fire when the user taps the notification
+                            .setAutoCancel(true)
+
+                        with(NotificationManagerCompat.from(requireContext())) {
+                            // notificationId is a unique int for each notification that you must define
+                            notify(1, builder.build())
+                        }
+                    }
+                }
+
+            }
+        }
     }
+
 
 }
