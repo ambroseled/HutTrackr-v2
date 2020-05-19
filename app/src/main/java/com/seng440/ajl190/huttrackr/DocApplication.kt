@@ -26,7 +26,7 @@ class DocApplication: Application(), KodeinAware {
         bind() from singleton { instance<DocDatabase>().trackDao() }
         bind() from singleton { instance<DocDatabase>().wishHutItemDao() }
         bind() from singleton { instance<DocDatabase>().visitItemDao() }
-        bind() from singleton { instance<DocDatabase>().lastFectDao() }
+        bind() from singleton { instance<DocDatabase>().lastFetchDao() }
 
         // Doc api services
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
@@ -38,10 +38,12 @@ class DocApplication: Application(), KodeinAware {
         bind<WishItemRepository>() with singleton { WishItemRepositoryImpl(instance()) }
         bind<TrackRepository>() with singleton { TrackRepositoryImpl(instance(), instance(), instance()) }
         bind<VisitItemRepository>() with singleton { VisitItemRepositoryImpl(instance()) }
+        bind<LastFetchRepository>() with singleton { LastFetchRepositoryImpl(instance()) }
+        bind<AlertRepository>() with singleton { AlertRepositoryImpl(instance()) }
 
         // View models
         bind() from provider { HutsListViewModelFactory(instance(), instance()) }
-        bind() from provider { HutViewModelFactory(instance(), instance(), instance()) }
+        bind() from provider { HutViewModelFactory(instance(), instance(), instance(), instance()) }
         bind() from provider { TracksListViewModelFactory(instance(), instance()) }
         bind() from provider { TrackViewModelFactory(instance(), instance(), instance()) }
         bind() from provider { WishListViewModelFactory(instance()) }

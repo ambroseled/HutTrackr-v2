@@ -1,10 +1,7 @@
 package com.seng440.ajl190.huttrackr.data.network
 
 import androidx.lifecycle.LiveData
-import com.seng440.ajl190.huttrackr.data.model.Hut
-import com.seng440.ajl190.huttrackr.data.model.HutResponse
-import com.seng440.ajl190.huttrackr.data.model.Track
-import com.seng440.ajl190.huttrackr.data.model.TrackResponse
+import com.seng440.ajl190.huttrackr.data.model.*
 
 interface DocApiDataSource {
 
@@ -14,6 +11,9 @@ interface DocApiDataSource {
     val tracks: LiveData<List<TrackResponse>>
     val track: LiveData<Track>
 
+    val trackAlerts: LiveData<List<TrackAlertResponse>>
+    val hutAlerts: LiveData<List<HutAlertResponse>>
+
     suspend fun fetchHuts()
 
     suspend fun fetchHut(assetId: Int)
@@ -21,4 +21,8 @@ interface DocApiDataSource {
     suspend fun fetchTracks()
 
     suspend fun fetchTrack(assetId: String)
+
+    suspend fun fetchTrackAlerts(assetId: String)
+
+    suspend fun fetchHutAlerts(assetId: Int)
 }

@@ -3,10 +3,7 @@ package com.seng440.ajl190.huttrackr.data.network
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.seng440.ajl190.huttrackr.data.model.Hut
-import com.seng440.ajl190.huttrackr.data.model.HutResponse
-import com.seng440.ajl190.huttrackr.data.model.Track
-import com.seng440.ajl190.huttrackr.data.model.TrackResponse
+import com.seng440.ajl190.huttrackr.data.model.*
 import com.seng440.ajl190.huttrackr.utils.NoConnectivityExpection
 
 class DocApiDataSourceImpl(
@@ -28,6 +25,14 @@ class DocApiDataSourceImpl(
     private val _track = MutableLiveData<Track>()
     override val track: LiveData<Track>
         get() = _track
+
+    private val _trackAlerts = MutableLiveData<List<TrackAlertResponse>>()
+    override val trackAlerts: LiveData<List<TrackAlertResponse>>
+        get() = _trackAlerts
+
+    private val _hutAlerts = MutableLiveData<List<HutAlertResponse>>()
+    override val hutAlerts: LiveData<List<HutAlertResponse>>
+        get() = _hutAlerts
 
 
 
@@ -66,6 +71,26 @@ class DocApiDataSourceImpl(
             val fetchedTrack = api.getTrackAsync(assetId)
                 .await()
             _track.postValue(fetchedTrack)
+        } catch (e: NoConnectivityExpection) {
+            Log.e("connectivity", "No internet connection", e)
+        }
+    }
+
+    override suspend fun fetchTrackAlerts(assetId: String) {
+        try {
+            val fetchedAlerts = api.getTrackAlertsAsync(assetId)
+                .await()
+            _trackAlerts.postValue(fetchedAlerts)
+        } catch (e: NoConnectivityExpection) {
+            Log.e("connectivity", "No internet connection", e)
+        }
+    }
+
+    override suspend fun fetchHutAlerts(assetId: Int) {
+        try {
+            val fetchedAlerts = api.getHutAlertsAsync(assetId)
+                .await()
+            _hutAlerts.postValue(fetchedAlerts)
         } catch (e: NoConnectivityExpection) {
             Log.e("connectivity", "No internet connection", e)
         }

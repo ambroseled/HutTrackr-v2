@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.preference.PreferenceManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.data.model.VisitItem
@@ -57,13 +56,10 @@ class HutFragment : ScopedFragment(), KodeinAware {
 
         if (assetId != -1) {
             bindUi()
+            checkForAlerts()
         } else {
-            // todo handle this case gracefully
+            Toast.makeText(requireContext(), "Something went wrong please try again", Toast.LENGTH_LONG).show()
         }
-
-        // todo this logic will be used for notifications
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val notifications = sharedPreferences.getBoolean("notifications", true)
 
         mainFab = activity!!.findViewById(R.id.floatingActionButton)
         visitFab = activity!!.findViewById(R.id.visitActionButton)
@@ -117,6 +113,28 @@ class HutFragment : ScopedFragment(), KodeinAware {
         viewModel.setHut(assetId!!)
         val hut = viewModel.hut.await()
         binding.hut = hut.value
+    }
+
+    private fun checkForAlerts() = launch {
+//        val alerts = viewModel.alerts.await()
+//        if (alerts.value != null) {
+//            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+//            val notifications = sharedPreferences.getBoolean("notifications", true)
+//            if (notifications) {
+//                var builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+//                    .setSmallIcon(R.drawable.notification_icon)
+//                    .setContentTitle("My notification")
+//                    .setContentText("Much longer text that cannot fit one line...")
+//                    .setStyle(NotificationCompat.BigTextStyle()
+//                        .bigText("Much longer text that cannot fit one line..."))
+//                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+//
+//                with(NotificationManagerCompat.from(requireContext())) {
+//                    // notificationId is a unique int for each notification that you must define
+//                    notify(notificationId, builder.build())
+//                }
+//            }
+//        }
     }
 
 }
