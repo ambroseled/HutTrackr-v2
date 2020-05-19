@@ -1,11 +1,18 @@
 package com.seng440.ajl190.huttrackr.view.track
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.data.model.VisitItem
@@ -36,6 +43,8 @@ class TrackFragment : ScopedFragment(), KodeinAware {
     private lateinit var mainFab: FloatingActionButton
     private lateinit var visitFab: FloatingActionButton
     private lateinit var wishFab: FloatingActionButton
+    private lateinit var notificationManager: NotificationManager
+    private val channelId = "com.seng440.ajl190.hutTrackr"
 
     private val binding get() = _binding!!
 
@@ -50,11 +59,13 @@ class TrackFragment : ScopedFragment(), KodeinAware {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory).get(TrackViewModel::class.java)
+        notificationManager = activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         assetId = arguments?.getString("assetId")
 
         if (assetId != "") {
             bindUi()
+            checkForAlerts()
         } else {
             // todo handle this case gracefully
         }
@@ -127,5 +138,41 @@ class TrackFragment : ScopedFragment(), KodeinAware {
             outputRegions += region
         }
         return outputRegions
+    }
+
+    private fun checkForAlerts() = launch {
+        val alerts = viewModel.alerts.await()
+        val track = viewModel.track.await()
+        if (alerts.value != null) {
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+            val notifications = sharedPreferences.getBoolean("notifications", true)
+            if (notifications) {
+                for (alert in alerts.value!![0].alerts) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        val name = "not_name"
+                        val descriptionText = "not_description"
+                        val importance = NotificationManager.IMPORTANCE_DEFAULT
+                        val channel = NotificationChannel(channelId, name, importance).apply {
+                            description = descriptionText
+                        }
+                        notificationManager.createNotificationChannel(channel)
+
+                        val builder = NotificationCompat.Builder(requireContext(), channelId)
+                            .setSmallIcon(R.mipmap.ic_launcher)
+                            .setContentTitle("Alert for ${track.value?.name}")
+                            .setContentText("${alert.heading}, \nSee DOC's website for more info")
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                            // Set the intent that will fire when the user taps the notification
+                            .setAutoCancel(true)
+
+                        with(NotificationManagerCompat.from(requireContext())) {
+                            // notificationId is a unique int for each notification that you must define
+                            notify(1, builder.build())
+                        }
+                    }
+                }
+
+            }
+        }
     }
 }

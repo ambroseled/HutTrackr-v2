@@ -1,6 +1,5 @@
 package com.seng440.ajl190.huttrackr.view.hut
 
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context.NOTIFICATION_SERVICE
@@ -15,6 +14,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.data.model.VisitItem
 import com.seng440.ajl190.huttrackr.data.model.WishItem
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
@@ -45,8 +45,6 @@ class HutFragment : ScopedFragment(), KodeinAware {
     private lateinit var visitFab: FloatingActionButton
     private lateinit var wishFab: FloatingActionButton
     private lateinit var notificationManager: NotificationManager
-    private lateinit var notificationChannel: NotificationChannel
-    private lateinit var notificationBuilder: Notification.Builder
     private val channelId = "com.seng440.ajl190.hutTrackr"
 
     private val binding get() = _binding!!
@@ -73,9 +71,9 @@ class HutFragment : ScopedFragment(), KodeinAware {
         }
 
 
-        mainFab = activity!!.findViewById(com.seng440.ajl190.huttrackr.R.id.floatingActionButton)
-        visitFab = activity!!.findViewById(com.seng440.ajl190.huttrackr.R.id.visitActionButton)
-        wishFab = activity!!.findViewById(com.seng440.ajl190.huttrackr.R.id.wishActionButton)
+        mainFab = activity!!.findViewById(R.id.floatingActionButton)
+        visitFab = activity!!.findViewById(R.id.visitActionButton)
+        wishFab = activity!!.findViewById(R.id.wishActionButton)
 
         mainFab.setOnClickListener {
             if (!isFabOpen) {
@@ -145,9 +143,9 @@ class HutFragment : ScopedFragment(), KodeinAware {
                         notificationManager.createNotificationChannel(channel)
 
                         val builder = NotificationCompat.Builder(requireContext(), channelId)
-                            .setSmallIcon(com.seng440.ajl190.huttrackr.R.mipmap.ic_launcher)
+                            .setSmallIcon(R.mipmap.ic_launcher)
                             .setContentTitle("Alert for ${hut.value?.name}")
-                            .setContentText(alert.heading)
+                            .setContentText("${alert.heading}, \nSee DOC's website for more info")
                             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                             // Set the intent that will fire when the user taps the notification
                             .setAutoCancel(true)
