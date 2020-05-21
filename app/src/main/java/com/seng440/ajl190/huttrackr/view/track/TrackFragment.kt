@@ -160,7 +160,7 @@ class TrackFragment : ScopedFragment(), KodeinAware {
                         val builder = NotificationCompat.Builder(requireContext(), channelId)
                             .setSmallIcon(R.mipmap.ic_launcher)
                             .setContentTitle("Alert for ${track.value?.name}")
-                            .setContentText("${alert.heading}, \nSee DOC's website for more info")
+                            .setContentText("${alert.heading}, \nSee DOC's website for more info") // todo make it expandable
                             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                             // Set the intent that will fire when the user taps the notification
                             .setAutoCancel(true)

@@ -19,4 +19,5 @@
     <string name="hutStatus">Hut Status</string>
     <string name="hutBunks">Hut Bunks</string>
     <string name="hutBookable">Hut Bookable</string>
+    <string name="access_token">sk.eyJ1IjoiYWpsMTkwIiwiYSI6ImNrOXhyYWF6NTBuZmUzZG50MTUyaGdrb3gifQ.R84i59HagOTMUVfvV0VYhw</string>
 </resources>
