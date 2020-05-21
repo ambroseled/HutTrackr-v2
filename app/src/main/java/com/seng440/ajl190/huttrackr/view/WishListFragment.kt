@@ -18,7 +18,6 @@ import com.seng440.ajl190.huttrackr.data.model.WishItem
 import com.seng440.ajl190.huttrackr.utils.listener.WishListClickListener
 import com.seng440.ajl190.huttrackr.view.adpater.WishRecyclerAdapter
 import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
-import com.seng440.ajl190.huttrackr.view.decorator.GridSpacingItemDecoration
 import com.seng440.ajl190.huttrackr.viewmodel.WishListViewModel
 import com.seng440.ajl190.huttrackr.viewmodel.factory.WishListViewModelFactory
 import kotlinx.android.synthetic.main.wish_list_fragment.*
@@ -67,13 +66,13 @@ class WishListFragment : ScopedFragment(), KodeinAware, WishListClickListener {
                 it.setHasFixedSize(true)
                 it.adapter =
                     WishRecyclerAdapter(huts, this@WishListFragment)
-                it.addItemDecoration(
-                    GridSpacingItemDecoration(
-                        2,
-                        20,
-                        true
-                    )
-                )
+//                it.addItemDecoration(
+//                    GridSpacingItemDecoration(
+//                        2,
+//                        20,
+//                        true
+//                    )
+//                )
             }
 
         })

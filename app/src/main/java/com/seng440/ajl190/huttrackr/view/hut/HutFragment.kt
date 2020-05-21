@@ -145,7 +145,9 @@ class HutFragment : ScopedFragment(), KodeinAware {
                         val builder = NotificationCompat.Builder(requireContext(), channelId)
                             .setSmallIcon(R.mipmap.ic_launcher)
                             .setContentTitle("Alert for ${hut.value?.name}")
-                            .setContentText("${alert.heading}, \nSee DOC's website for more info")
+                            .setContentText(alert.heading)
+                            .setStyle(NotificationCompat.BigTextStyle()
+                                .bigText("${alert.heading}\n\nFor more information follow the link to DoC's website from the hut page"))
                             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                             // Set the intent that will fire when the user taps the notification
                             .setAutoCancel(true)

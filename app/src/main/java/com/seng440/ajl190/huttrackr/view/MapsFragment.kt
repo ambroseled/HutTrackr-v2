@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.mapbox.mapboxsdk.Mapbox
-import com.mapbox.mapboxsdk.constants.Style
+import com.mapbox.mapboxsdk.maps.Style
 import com.seng440.ajl190.huttrackr.viewmodel.MapsViewModel
 import kotlinx.android.synthetic.main.maps_fragment.*
 
@@ -35,6 +35,7 @@ class MapsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Mapbox.getInstance(requireContext(), getString(com.seng440.ajl190.huttrackr.R.string.access_token))
         return inflater.inflate(com.seng440.ajl190.huttrackr.R.layout.maps_fragment, container, false)
     }
 
@@ -42,7 +43,7 @@ class MapsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MapsViewModel::class.java)
 
-        Mapbox.getInstance(requireContext(), getString(com.seng440.ajl190.huttrackr.R.string.access_token))
+
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         fusedLocationClient.lastLocation.addOnSuccessListener {location ->
@@ -55,7 +56,10 @@ class MapsFragment : Fragment() {
 
         mapView?.onCreate(savedInstanceState)
         mapView?.getMapAsync { mapboxMap ->
-            mapboxMap.setStyle(Style.OUTDOORS) {
+//            mapboxMap.setStyle(Style.Builder().fromUri("asset://terrain-style.json")) {
+//
+//            }
+            mapboxMap.setStyle(Style.SATELLITE) {
 
             }
         }

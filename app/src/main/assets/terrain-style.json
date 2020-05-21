@@ -1,0 +1,41 @@
+{
+  "version": 8,
+  "name": "Mapbox Terrain tileset v2",
+  "sources": {
+    "mapbox-terrain": {
+      "type": "vector",
+      "url": "mapbox://mapbox.mapbox-terrain-v2"
+    }
+  },
+  "layers": [
+    {
+      "id": "landcover",
+      "source": "mapbox-terrain",
+      "source-layer": "landcover",
+      "type": "fill",
+      "paint": {
+        "fill-color": "rgba(66,100,251, 0.3)",
+        "fill-outline-color": "rgba(66,100,251, 1)"
+      }
+    },
+    {
+      "id": "hillshade",
+      "source": "mapbox-terrain",
+      "source-layer": "hillshade",
+      "type": "fill",
+      "paint": {
+        "fill-color": "rgba(66,100,251, 0.3)",
+        "fill-outline-color": "rgba(66,100,251, 1)"
+      }
+    },
+    {
+      "id": "contour",
+      "source": "mapbox-terrain",
+      "source-layer": "contour",
+      "type": "line",
+      "paint": {
+        "line-color": "#ffffff"
+      }
+    }
+  ]
+}
