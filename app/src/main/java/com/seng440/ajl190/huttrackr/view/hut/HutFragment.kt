@@ -63,6 +63,7 @@ class HutFragment : ScopedFragment(), KodeinAware {
         viewModel = ViewModelProvider(this, viewModelFactory).get(HutViewModel::class.java)
         assetId = arguments?.getInt("assetId")
         notificationManager = activity?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        assetId = 100073818
         if (assetId != -1) {
             bindUi()
             checkForAlerts()
@@ -131,7 +132,7 @@ class HutFragment : ScopedFragment(), KodeinAware {
         if (alerts.value != null) {
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
             val notifications = sharedPreferences.getBoolean("notifications", true)
-            if (notifications) {
+            if (notifications && alerts.value!!.isNotEmpty()) {
                 for (alert in alerts.value!![0].alerts) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         val name = "not_name"
@@ -147,7 +148,7 @@ class HutFragment : ScopedFragment(), KodeinAware {
                             .setContentTitle("Alert for ${hut.value?.name}")
                             .setContentText(alert.heading)
                             .setStyle(NotificationCompat.BigTextStyle()
-                                .bigText("${alert.heading}\n\nFor more information follow the link to DoC's website from the hut page"))
+                                .bigText("${alert.detail}\n\nFor more information follow the link to DoC's website from the hut page"))
                             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                             // Set the intent that will fire when the user taps the notification
                             .setAutoCancel(true)

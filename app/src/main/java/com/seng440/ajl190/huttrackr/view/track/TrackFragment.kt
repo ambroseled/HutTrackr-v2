@@ -146,7 +146,7 @@ class TrackFragment : ScopedFragment(), KodeinAware {
         if (alerts.value != null) {
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
             val notifications = sharedPreferences.getBoolean("notifications", true)
-            if (notifications) {
+            if (notifications && alerts.value!!.isNotEmpty()) {
                 for (alert in alerts.value!![0].alerts) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         val name = "not_name"
