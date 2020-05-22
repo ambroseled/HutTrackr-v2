@@ -1,28 +1,23 @@
 package com.seng440.ajl190.huttrackr.view.hut
 
-import android.Manifest.permission.READ_CONTACTS
-import android.Manifest.permission.SEND_SMS
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context.NOTIFICATION_SERVICE
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.telephony.SmsManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.seng440.ajl190.huttrackr.data.model.VisitItem
 import com.seng440.ajl190.huttrackr.data.model.WishItem
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
+import com.seng440.ajl190.huttrackr.view.SmsFragment
 import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
 import com.seng440.ajl190.huttrackr.viewmodel.HutViewModel
 import com.seng440.ajl190.huttrackr.viewmodel.factory.HutViewModelFactory
@@ -49,12 +44,10 @@ class HutFragment : ScopedFragment(), KodeinAware {
     private lateinit var mainFab: FloatingActionButton
     private lateinit var visitFab: FloatingActionButton
     private lateinit var wishFab: FloatingActionButton
+    private lateinit var smsFab: FloatingActionButton
     private lateinit var notificationManager: NotificationManager
     private val channelId = "com.seng440.ajl190.hutTrackr"
-    private val PERMISSION_SEND_SMS = 123
-    private var phoneNo = "02102870286"
-    private var smsMsg = "My name a jeff"
-    private lateinit var smsManager: SmsManager
+
 
     private val binding get() = _binding!!
 
@@ -78,13 +71,11 @@ class HutFragment : ScopedFragment(), KodeinAware {
         } else {
             Toast.makeText(requireContext(), "Something went wrong please try again", Toast.LENGTH_LONG).show()
         }
-        requestSmsPermission()
-        smsManager = SmsManager.getDefault()
-
 
         mainFab = activity!!.findViewById(com.seng440.ajl190.huttrackr.R.id.floatingActionButton)
         visitFab = activity!!.findViewById(com.seng440.ajl190.huttrackr.R.id.visitActionButton)
         wishFab = activity!!.findViewById(com.seng440.ajl190.huttrackr.R.id.wishActionButton)
+        smsFab = activity!!.findViewById(com.seng440.ajl190.huttrackr.R.id.smsActionButton)
 
         mainFab.setOnClickListener {
             if (!isFabOpen) {
@@ -105,11 +96,13 @@ class HutFragment : ScopedFragment(), KodeinAware {
             closeFabMenu()
             Toast.makeText(requireContext(), "Added to wish list", Toast.LENGTH_LONG).show()
         }
-        sendSms()
-    }
 
-    private fun sendSms() {
-        smsManager.sendTextMessage(phoneNo, null, smsMsg, null, null)
+        smsFab.setOnClickListener {
+            closeFabMenu()
+            Toast.makeText(requireContext(), "Jeffffff", Toast.LENGTH_LONG).show()
+            val smsDialog = SmsFragment()
+            smsDialog.show(activity!!.supportFragmentManager, "SmsDialog")
+        }
     }
 
     private fun addVisit() = launch {
@@ -127,12 +120,14 @@ class HutFragment : ScopedFragment(), KodeinAware {
         isFabOpen = false
         visitFab.visibility = View.GONE
         wishFab.visibility = View.GONE
+        smsFab.visibility = View.GONE
     }
 
     private fun openFabMenu() {
         isFabOpen = true
         visitFab.visibility = View.VISIBLE
         wishFab.visibility = View.VISIBLE
+        smsFab.visibility = View.VISIBLE
     }
 
     private fun bindUi() = launch {
@@ -176,15 +171,6 @@ class HutFragment : ScopedFragment(), KodeinAware {
                 }
 
             }
-        }
-    }
-
-
-    private fun requestSmsPermission() {
-        if (ContextCompat.checkSelfPermission(requireContext(), READ_CONTACTS) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(SEND_SMS), PERMISSION_SEND_SMS
-            )
         }
     }
 

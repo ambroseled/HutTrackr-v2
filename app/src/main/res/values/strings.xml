@@ -20,4 +20,7 @@
     <string name="hutBunks">Hut Bunks</string>
     <string name="hutBookable">Hut Bookable</string>
     <string name="access_token">sk.eyJ1IjoiYWpsMTkwIiwiYSI6ImNrOXhyYWF6NTBuZmUzZG50MTUyaGdrb3gifQ.R84i59HagOTMUVfvV0VYhw</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
