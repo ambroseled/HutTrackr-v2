@@ -1,20 +1,25 @@
 package com.seng440.ajl190.huttrackr.view.hut
 
+import android.Manifest.permission.READ_CONTACTS
+import android.Manifest.permission.SEND_SMS
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context.NOTIFICATION_SERVICE
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.telephony.SmsManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.data.model.VisitItem
 import com.seng440.ajl190.huttrackr.data.model.WishItem
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
@@ -46,6 +51,10 @@ class HutFragment : ScopedFragment(), KodeinAware {
     private lateinit var wishFab: FloatingActionButton
     private lateinit var notificationManager: NotificationManager
     private val channelId = "com.seng440.ajl190.hutTrackr"
+    private val PERMISSION_SEND_SMS = 123
+    private var phoneNo = "02102870286"
+    private var smsMsg = "My name a jeff"
+    private lateinit var smsManager: SmsManager
 
     private val binding get() = _binding!!
 
@@ -63,18 +72,19 @@ class HutFragment : ScopedFragment(), KodeinAware {
         viewModel = ViewModelProvider(this, viewModelFactory).get(HutViewModel::class.java)
         assetId = arguments?.getInt("assetId")
         notificationManager = activity?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        assetId = 100073818
         if (assetId != -1) {
             bindUi()
             checkForAlerts()
         } else {
             Toast.makeText(requireContext(), "Something went wrong please try again", Toast.LENGTH_LONG).show()
         }
+        requestSmsPermission()
+        smsManager = SmsManager.getDefault()
 
 
-        mainFab = activity!!.findViewById(R.id.floatingActionButton)
-        visitFab = activity!!.findViewById(R.id.visitActionButton)
-        wishFab = activity!!.findViewById(R.id.wishActionButton)
+        mainFab = activity!!.findViewById(com.seng440.ajl190.huttrackr.R.id.floatingActionButton)
+        visitFab = activity!!.findViewById(com.seng440.ajl190.huttrackr.R.id.visitActionButton)
+        wishFab = activity!!.findViewById(com.seng440.ajl190.huttrackr.R.id.wishActionButton)
 
         mainFab.setOnClickListener {
             if (!isFabOpen) {
@@ -95,6 +105,11 @@ class HutFragment : ScopedFragment(), KodeinAware {
             closeFabMenu()
             Toast.makeText(requireContext(), "Added to wish list", Toast.LENGTH_LONG).show()
         }
+        sendSms()
+    }
+
+    private fun sendSms() {
+        smsManager.sendTextMessage(phoneNo, null, smsMsg, null, null)
     }
 
     private fun addVisit() = launch {
@@ -144,7 +159,7 @@ class HutFragment : ScopedFragment(), KodeinAware {
                         notificationManager.createNotificationChannel(channel)
 
                         val builder = NotificationCompat.Builder(requireContext(), channelId)
-                            .setSmallIcon(R.mipmap.ic_launcher)
+                            .setSmallIcon(com.seng440.ajl190.huttrackr.R.mipmap.ic_launcher)
                             .setContentTitle("Alert for ${hut.value?.name}")
                             .setContentText(alert.heading)
                             .setStyle(NotificationCompat.BigTextStyle()
@@ -161,6 +176,15 @@ class HutFragment : ScopedFragment(), KodeinAware {
                 }
 
             }
+        }
+    }
+
+
+    private fun requestSmsPermission() {
+        if (ContextCompat.checkSelfPermission(requireContext(), READ_CONTACTS) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(SEND_SMS), PERMISSION_SEND_SMS
+            )
         }
     }
 
