@@ -42,6 +42,20 @@
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/smsActionButtonTrack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_23"
+            android:clickable="true"
+            android:src="@drawable/ic_sms"
+            android:visibility="gone"
+            app:borderWidth="0.5dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/wishActionButtonTrack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="32dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/wishActionButtonTrack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

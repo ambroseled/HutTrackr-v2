@@ -4,34 +4,58 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:text="@string/phoneDialog"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/smsNumTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter the pnone number" />
+        android:fontFamily="casual"
+        android:paddingStart="8sp"
+        android:paddingEnd="8sp"
+        android:text="@string/phoneNum" />
 
     <EditText
         android:id="@+id/phoneNumberVal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints="@string/phoneHint"
         android:ems="10"
-        android:inputType="phone" />
+        android:hint="@string/phoneHint"
+        android:inputType="phone"
+        android:paddingStart="8sp"
+        android:paddingEnd="8sp" />
 
     <TextView
         android:id="@+id/smsMessageTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter message" />
+        android:fontFamily="casual"
+        android:paddingStart="8sp"
+        android:paddingEnd="8sp"
+        android:text="@string/smsMsg" />
 
     <EditText
         android:id="@+id/smsMessageVal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints="@string/msgHint"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:hint="@string/msgHint"
+        android:inputType="textPersonName"
+        android:paddingStart="8sp"
+        android:paddingEnd="8sp" />
 
     <Button
         android:id="@+id/sendSmsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Send" />
+        android:text="@string/sendButton" />
 </LinearLayout>

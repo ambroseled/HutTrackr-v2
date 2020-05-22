@@ -18,6 +18,7 @@ import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.data.model.VisitItem
 import com.seng440.ajl190.huttrackr.data.model.WishItem
 import com.seng440.ajl190.huttrackr.databinding.TrackFragmentBinding
+import com.seng440.ajl190.huttrackr.view.SmsFragment
 import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
 import com.seng440.ajl190.huttrackr.viewmodel.TrackViewModel
 import com.seng440.ajl190.huttrackr.viewmodel.factory.TrackViewModelFactory
@@ -43,8 +44,10 @@ class TrackFragment : ScopedFragment(), KodeinAware {
     private lateinit var mainFab: FloatingActionButton
     private lateinit var visitFab: FloatingActionButton
     private lateinit var wishFab: FloatingActionButton
+    private lateinit var smsFab: FloatingActionButton
     private lateinit var notificationManager: NotificationManager
     private val channelId = "com.seng440.ajl190.hutTrackr"
+    private lateinit var trackLink: String
 
     private val binding get() = _binding!!
 
@@ -67,12 +70,13 @@ class TrackFragment : ScopedFragment(), KodeinAware {
             bindUi()
             checkForAlerts()
         } else {
-            // todo handle this case gracefully
+            Toast.makeText(requireContext(), "Something went wrong please try again", Toast.LENGTH_LONG).show()
         }
 
         mainFab = activity!!.findViewById(R.id.floatingActionButtonTrack)
         visitFab = activity!!.findViewById(R.id.visitActionButtonTrack)
         wishFab = activity!!.findViewById(R.id.wishActionButtonTrack)
+        smsFab = activity!!.findViewById(R.id.smsActionButtonTrack)
 
         mainFab.setOnClickListener {
             if (!isFabOpen) {
@@ -93,13 +97,22 @@ class TrackFragment : ScopedFragment(), KodeinAware {
             closeFabMenu()
             Toast.makeText(requireContext(), "Added to wish list", Toast.LENGTH_LONG).show()
         }
+
+        smsFab.setOnClickListener {
+            closeFabMenu()
+            val smsDialog = SmsFragment()
+            val bundle = Bundle()
+            bundle.putString("docLink", trackLink)
+            smsDialog.arguments = bundle
+            smsDialog.show(activity!!.supportFragmentManager, "SmsDialog")
+        }
     }
 
     private fun bindUi() = launch {
         viewModel.setTrack(assetId!!)
         val track = viewModel.track.await()
         binding.track = track.value
-        //detailedHutImage.startAnimation(AnimationUtils.loadAnimation(this, R.anim.bounce))
+        trackLink = track.value!!.staticLink
     }
 
     private fun addVisit() = launch {
@@ -118,12 +131,14 @@ class TrackFragment : ScopedFragment(), KodeinAware {
         isFabOpen = false
         visitFab.visibility = View.GONE
         wishFab.visibility = View.GONE
+        smsFab.visibility = View.GONE
     }
 
     private fun openFabMenu() {
         isFabOpen = true
         visitFab.visibility = View.VISIBLE
         wishFab.visibility = View.VISIBLE
+        smsFab.visibility = View.VISIBLE
     }
 
     /**
@@ -147,6 +162,7 @@ class TrackFragment : ScopedFragment(), KodeinAware {
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
             val notifications = sharedPreferences.getBoolean("notifications", true)
             if (notifications && alerts.value!!.isNotEmpty()) {
+                var id = 1
                 for (alert in alerts.value!![0].alerts) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         val name = "not_name"
@@ -160,15 +176,18 @@ class TrackFragment : ScopedFragment(), KodeinAware {
                         val builder = NotificationCompat.Builder(requireContext(), channelId)
                             .setSmallIcon(R.mipmap.ic_launcher)
                             .setContentTitle("Alert for ${track.value?.name}")
-                            .setContentText("${alert.heading}, \nSee DOC's website for more info") // todo make it expandable
+                            .setContentText(alert.heading)
+                            .setStyle(NotificationCompat.BigTextStyle()
+                                .bigText("${alert.heading}\nFor more information follow the link to DoC's website from the hut page"))
                             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                             // Set the intent that will fire when the user taps the notification
                             .setAutoCancel(true)
 
                         with(NotificationManagerCompat.from(requireContext())) {
                             // notificationId is a unique int for each notification that you must define
-                            notify(1, builder.build())
+                            notify(id, builder.build())
                         }
+                        id += 1
                     }
                 }
 

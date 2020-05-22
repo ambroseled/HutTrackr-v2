@@ -20,7 +20,10 @@
     <string name="hutBunks">Hut Bunks</string>
     <string name="hutBookable">Hut Bookable</string>
     <string name="access_token">sk.eyJ1IjoiYWpsMTkwIiwiYSI6ImNrOXhyYWF6NTBuZmUzZG50MTUyaGdrb3gifQ.R84i59HagOTMUVfvV0VYhw</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="phoneDialog">Send to a friend</string>
+    <string name="phoneNum">Mobile Number</string>
+    <string name="smsMsg">Message</string>
+    <string name="msgHint">Enter a brief message</string>
+    <string name="phoneHint">Enter a mobile number</string>
+    <string name="sendButton">Send</string>
 </resources>

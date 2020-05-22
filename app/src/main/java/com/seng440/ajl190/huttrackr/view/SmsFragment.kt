@@ -19,8 +19,8 @@ import kotlinx.android.synthetic.main.sms_fragment.*
 class SmsFragment : DialogFragment() {
 
     private val PERMISSION_SEND_SMS = 123
-    private var phoneNo = "02102870286"
     private lateinit var smsManager: SmsManager
+    private lateinit var docLink: String
 
     companion object {
         fun newInstance() = SmsFragment()
@@ -41,6 +41,7 @@ class SmsFragment : DialogFragment() {
         smsManager = SmsManager.getDefault()
         requestSmsPermission()
 
+        docLink = arguments!!.getString("docLink")!!
         sendSmsButton.setOnClickListener {
             sendSms()
             dialog?.dismiss()
@@ -49,7 +50,7 @@ class SmsFragment : DialogFragment() {
     }
 
     private fun sendSms() {
-        smsManager.sendTextMessage(phoneNumberVal.text.toString(), null, smsMessageVal.text.toString(), null, null)
+        smsManager.sendTextMessage(phoneNumberVal.text.toString(), null, "${smsMessageVal.text}\n\n$docLink", null, null)
     }
 
 
