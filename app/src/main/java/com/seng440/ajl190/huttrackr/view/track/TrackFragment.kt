@@ -48,7 +48,7 @@ class TrackFragment : ScopedFragment(), KodeinAware {
     private lateinit var notificationManager: NotificationManager
     private val channelId = "com.seng440.ajl190.hutTrackr"
     private lateinit var trackLink: String
-
+    private lateinit var mapFragment: TrackMapFragment
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -56,6 +56,7 @@ class TrackFragment : ScopedFragment(), KodeinAware {
         savedInstanceState: Bundle?
     ): View? {
         _binding = TrackFragmentBinding.inflate(layoutInflater, container, false)
+        mapFragment = childFragmentManager.findFragmentById(R.id.trackMapFragment) as TrackMapFragment
         return binding.root
     }
 
@@ -113,6 +114,7 @@ class TrackFragment : ScopedFragment(), KodeinAware {
         val track = viewModel.track.await()
         binding.track = track.value
         trackLink = track.value!!.staticLink
+        mapFragment.setAssetCoords(track.value!!.x, track.value!!.y)
     }
 
     private fun addVisit() = launch {

@@ -177,7 +177,22 @@
                     android:drawableLeft="@drawable/ic_location_on_green_24dp"
                     android:drawablePadding="8dp"
                     android:text="@{track.region[0]}" />
+
             </LinearLayout>
+
+            <fragment
+                android:id="@+id/trackMapFragment"
+                android:name="com.seng440.ajl190.huttrackr.view.track.TrackMapFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="64dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/leftLayoutTrack" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
