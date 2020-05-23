@@ -48,7 +48,6 @@ class DocApplication: Application(), KodeinAware {
         bind() from provider { TrackViewModelFactory(instance(), instance(), instance(), instance()) }
         bind() from provider { WishListViewModelFactory(instance()) }
         bind() from provider { VisitViewModelFactory(instance(), instance()) }
-
     }
 
     override fun onCreate() {

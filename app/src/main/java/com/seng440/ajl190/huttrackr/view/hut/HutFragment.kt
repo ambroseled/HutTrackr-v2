@@ -18,6 +18,7 @@ import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.data.model.VisitItem
 import com.seng440.ajl190.huttrackr.data.model.WishItem
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
+import com.seng440.ajl190.huttrackr.view.HutMapFragment
 import com.seng440.ajl190.huttrackr.view.SmsFragment
 import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
 import com.seng440.ajl190.huttrackr.viewmodel.HutViewModel
@@ -49,6 +50,7 @@ class HutFragment : ScopedFragment(), KodeinAware {
     private lateinit var notificationManager: NotificationManager
     private val channelId = "com.seng440.ajl190.hutTrackr"
     private lateinit var hutLink: String
+    private lateinit var mapFragment: HutMapFragment
     private val binding get() = _binding!!
 
 
@@ -57,6 +59,7 @@ class HutFragment : ScopedFragment(), KodeinAware {
         savedInstanceState: Bundle?
     ): View? {
         _binding = HutFragmentBinding.inflate(layoutInflater, container, false)
+        mapFragment = childFragmentManager.findFragmentById(R.id.hutMapFragment) as HutMapFragment
         return binding.root
     }
 
@@ -136,6 +139,7 @@ class HutFragment : ScopedFragment(), KodeinAware {
         val hut = viewModel.hut.await()
         binding.hut = hut.value
         hutLink = hut.value!!.staticLink
+        mapFragment.setAssetCoords(hut.value!!.x, hut.value!!.y)
     }
 
     private fun checkForAlerts() = launch {

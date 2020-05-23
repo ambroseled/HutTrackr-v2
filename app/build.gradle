@@ -109,4 +109,7 @@ dependencies {
 
     // Dialogs
     implementation 'com.afollestad.material-dialogs:core:3.1.1'
+
+    // ArcGis
+    implementation 'com.esri.arcgisruntime:arcgis-android:100.7.0'
 }

@@ -43,9 +43,9 @@
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.seng440.ajl190.huttrackr.view.MapsFragment"
+        android:name="com.seng440.ajl190.huttrackr.view.HutMapFragment"
         android:label="Map"
-        tools:layout="@layout/maps_fragment" />
+        tools:layout="@layout/hut_map_fragment" />
     <fragment
         android:id="@+id/trackFragment"
         android:name="com.seng440.ajl190.huttrackr.view.track.TrackFragment">

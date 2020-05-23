@@ -184,6 +184,21 @@
 
             </LinearLayout>
 
+            <fragment
+                android:id="@+id/hutMapFragment"
+                android:name="com.seng440.ajl190.huttrackr.view.HutMapFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="64dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/leftLayout" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout> <!-- Image by <a href="https://pixabay.com/users/kewl-24755/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=90388">kewl</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=90388">Pixabay</a> -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
