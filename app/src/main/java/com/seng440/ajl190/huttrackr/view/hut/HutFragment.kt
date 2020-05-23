@@ -18,7 +18,6 @@ import com.seng440.ajl190.huttrackr.R
 import com.seng440.ajl190.huttrackr.data.model.VisitItem
 import com.seng440.ajl190.huttrackr.data.model.WishItem
 import com.seng440.ajl190.huttrackr.databinding.HutFragmentBinding
-import com.seng440.ajl190.huttrackr.view.HutMapFragment
 import com.seng440.ajl190.huttrackr.view.SmsFragment
 import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
 import com.seng440.ajl190.huttrackr.viewmodel.HutViewModel

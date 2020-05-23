@@ -186,7 +186,7 @@
 
             <fragment
                 android:id="@+id/hutMapFragment"
-                android:name="com.seng440.ajl190.huttrackr.view.HutMapFragment"
+                android:name="com.seng440.ajl190.huttrackr.view.hut.HutMapFragment"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
