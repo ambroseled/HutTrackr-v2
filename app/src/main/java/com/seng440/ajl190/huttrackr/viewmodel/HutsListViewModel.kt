@@ -11,6 +11,8 @@ class HutsListViewModel(
     private val hutWishItemRepository: WishItemRepository
 ) : ViewModel() {
 
+    private var listPosition = 0
+
     val huts by lazyDeferred {
         hutRepository.getAllHuts()
     }
@@ -21,6 +23,14 @@ class HutsListViewModel(
 
     fun deleteWishHutItem(wishItem: WishItem) {
         hutWishItemRepository.deleteWishItem(wishItem)
+    }
+
+    fun getPosition(): Int {
+        return listPosition
+    }
+
+    fun setPosition(pos: Int) {
+        listPosition = pos
     }
 
 }

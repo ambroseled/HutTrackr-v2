@@ -39,6 +39,7 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
     override val kodein: Kodein by kodein()
     private val viewModelFactory: HutsListViewModelFactory by instance()
     private lateinit var viewModel: HutsListViewModel
+    private lateinit var adapter: HutsRecyclerAdapter
 
 
     override fun onCreateView(
@@ -61,14 +62,14 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             gridSize = 4
         }
-
         val returnedHuts = viewModel.huts.await()
         returnedHuts.observe(viewLifecycleOwner, Observer {huts ->
+            adapter = HutsRecyclerAdapter(huts, this@HutsListFragment)
             recycler_view_huts.also {
                 it.layoutManager = GridLayoutManager(requireContext(), gridSize)
                 it.setHasFixedSize(true)
                 it.adapter =
-                    HutsRecyclerAdapter(huts, this@HutsListFragment)
+                    adapter
                 it.addItemDecoration(
                     GridSpacingItemDecoration(
                         2,
@@ -76,6 +77,7 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
                         true
                     )
                 )
+                it.scrollToPosition(viewModel.getPosition())
             }
 
         })
@@ -101,6 +103,11 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
         val navController = this.findNavController()
         val action = HutsListFragmentDirections.actionHutsListFragmentToHutFragment(hut.assetId)
         navController.navigate(action)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.setPosition(15)
     }
 
 
