@@ -5,4 +5,9 @@
     android:background="@color/colorPrimary"
     android:elevation="4dp">
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Jeff"/>
+
 </androidx.appcompat.widget.Toolbar>

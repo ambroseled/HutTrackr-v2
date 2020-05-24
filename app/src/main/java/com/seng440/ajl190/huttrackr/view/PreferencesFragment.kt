@@ -24,7 +24,6 @@ class PreferencesFragment : PreferenceFragmentCompat() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(PreferencesViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

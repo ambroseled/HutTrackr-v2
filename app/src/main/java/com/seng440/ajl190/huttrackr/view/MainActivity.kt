@@ -1,7 +1,5 @@
 package com.seng440.ajl190.huttrackr.view
 
-import android.app.NotificationManager
-import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -32,7 +30,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(actionBar)
 
         NavigationUI.setupActionBarWithNavController(this, navController)
-        val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+
     }
 
 
