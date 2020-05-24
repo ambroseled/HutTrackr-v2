@@ -38,6 +38,7 @@ class TracksListFragment : ScopedFragment(), KodeinAware, TrackListClickListener
     override val kodein: Kodein by kodein()
     private val viewModelFactory: TracksListViewModelFactory by instance()
     private lateinit var viewModel: TracksListViewModel
+    private lateinit var adapter: TracksRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,11 +62,11 @@ class TracksListFragment : ScopedFragment(), KodeinAware, TrackListClickListener
 
         val returnedTracks = viewModel.tracks.await()
         returnedTracks.observe(viewLifecycleOwner, Observer {tracks ->
+            adapter = TracksRecyclerAdapter(tracks, this@TracksListFragment)
             recycler_view_tracks.also {
                 it.layoutManager = GridLayoutManager(requireContext(), gridSize)
                 it.setHasFixedSize(true)
-                it.adapter =
-                    TracksRecyclerAdapter(tracks, this@TracksListFragment)
+                it.adapter = adapter
                 it.addItemDecoration(
                     GridSpacingItemDecoration(
                         2,
@@ -73,6 +74,7 @@ class TracksListFragment : ScopedFragment(), KodeinAware, TrackListClickListener
                         true
                     )
                 )
+                it.scrollToPosition(viewModel.getPosition())
             }
 
         })
@@ -112,6 +114,11 @@ class TracksListFragment : ScopedFragment(), KodeinAware, TrackListClickListener
             outputRegions += region
         }
         return outputRegions
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.setPosition(adapter.currentPos)
     }
 
 }

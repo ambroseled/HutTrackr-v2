@@ -79,7 +79,6 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
                 )
                 it.scrollToPosition(viewModel.getPosition())
             }
-
         })
     }
 
@@ -107,7 +106,7 @@ class HutsListFragment : ScopedFragment(), KodeinAware, HutListClickListener {
 
     override fun onPause() {
         super.onPause()
-        viewModel.setPosition(15)
+        viewModel.setPosition(adapter.currentPos)
     }
 
 

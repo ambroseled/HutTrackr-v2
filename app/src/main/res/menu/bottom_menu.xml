@@ -9,8 +9,4 @@
         android:id="@+id/tracksListFragment"
         android:title="@string/tracks"
         android:icon="@drawable/ic_track_green_24dp"/>
-    <item
-        android:id="@+id/mapsFragment"
-        android:icon="@drawable/ic_map_green_24dp"
-        android:title="@string/map" />
 </menu>

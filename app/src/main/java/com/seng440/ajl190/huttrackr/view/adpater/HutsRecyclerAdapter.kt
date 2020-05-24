@@ -14,6 +14,8 @@ class HutsRecyclerAdapter (
     private val listClickListener: HutListClickListener
 ) : RecyclerView.Adapter<HutsRecyclerAdapter.HutRecyclerViewHolder>() {
 
+    var currentPos: Int = 0
+
     override fun getItemCount() = huts.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -27,10 +29,11 @@ class HutsRecyclerAdapter (
         )
 
     override fun onBindViewHolder(holder: HutRecyclerViewHolder, position: Int) {
+        currentPos = position
         holder.hutListItemBinding.hutResponse = huts[position]
-        holder.hutListItemBinding.wishSwitchHutList.setOnClickListener {
-            listClickListener.onWishListClick(huts[position], holder.hutListItemBinding.wishSwitchHutList)
-        }
+//        holder.hutListItemBinding.wishSwitchHutList.setOnClickListener {
+//            listClickListener.onWishListClick(huts[position], holder.hutListItemBinding.wishSwitchHutList)
+//        }
         holder.hutListItemBinding.moreInfoIconHut.setOnClickListener {
             listClickListener.onMoreInfoClick(huts[position])
         }

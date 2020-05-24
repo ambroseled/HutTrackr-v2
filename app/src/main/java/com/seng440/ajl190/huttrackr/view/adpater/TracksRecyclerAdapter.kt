@@ -14,6 +14,7 @@ class TracksRecyclerAdapter (
     private val listClickListener: TrackListClickListener
 ) : RecyclerView.Adapter<TracksRecyclerAdapter.TrackRecyclerViewHolder>() {
 
+    var currentPos: Int = 0
 
     override fun getItemCount() = tracks.size
 
@@ -28,10 +29,11 @@ class TracksRecyclerAdapter (
         )
 
     override fun onBindViewHolder(holder: TrackRecyclerViewHolder, position: Int) {
+        currentPos = position
         holder.trackListItemBinding.trackResponse = tracks[position]
-        holder.trackListItemBinding.wishSwitchTrackList.setOnClickListener {
-            listClickListener.onWishListClick(tracks[position], holder.trackListItemBinding.wishSwitchTrackList)
-        }
+//        holder.trackListItemBinding.wishSwitchTrackList.setOnClickListener {
+//            listClickListener.onWishListClick(tracks[position], holder.trackListItemBinding.wishSwitchTrackList)
+//        }
         holder.trackListItemBinding.moreInfoIconTrack.setOnClickListener {
             listClickListener.onMoreInfoClick(tracks[position])
         }

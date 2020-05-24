@@ -35,17 +35,9 @@
         android:name="com.seng440.ajl190.huttrackr.view.track.TracksListFragment"
         android:label="Tracks">
         <action
-            android:id="@+id/action_tracksListFragment_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
-        <action
             android:id="@+id/action_tracksListFragment_to_trackFragment"
             app:destination="@id/trackFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/mapsFragment"
-        android:name="com.seng440.ajl190.huttrackr.view.hut.HutMapFragment"
-        android:label="Map"
-        tools:layout="@layout/hut_map_fragment" />
     <fragment
         android:id="@+id/trackFragment"
         android:name="com.seng440.ajl190.huttrackr.view.track.TrackFragment">
