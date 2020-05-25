@@ -6,8 +6,12 @@
     android:elevation="4dp">
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tempActionBar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="Jeff"/>
+        android:drawableStart="@drawable/ic_temperature"
+        android:drawablePadding="8dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="5dp" />
 
 </androidx.appcompat.widget.Toolbar>
