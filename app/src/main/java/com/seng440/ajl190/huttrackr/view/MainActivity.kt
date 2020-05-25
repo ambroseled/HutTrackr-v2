@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
@@ -70,7 +69,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL)
         } else {
             tempActionBar.visibility = View.GONE
-            Toast.makeText(this, "No temperature sensor present on device", Toast.LENGTH_LONG).show()
         }
     }
 

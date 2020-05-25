@@ -3,6 +3,8 @@ package com.seng440.ajl190.huttrackr.view.track
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,6 +24,7 @@ import com.seng440.ajl190.huttrackr.view.SmsFragment
 import com.seng440.ajl190.huttrackr.view.base.ScopedFragment
 import com.seng440.ajl190.huttrackr.viewmodel.TrackViewModel
 import com.seng440.ajl190.huttrackr.viewmodel.factory.TrackViewModelFactory
+import kotlinx.android.synthetic.main.track_fragment.*
 import kotlinx.coroutines.launch
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -73,7 +76,13 @@ class TrackFragment : ScopedFragment(), KodeinAware {
         } else {
             Toast.makeText(requireContext(), "Something went wrong please try again", Toast.LENGTH_LONG).show()
         }
+        initFabs()
+        trackDocLink.setOnClickListener{
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(trackLink)))
+        }
+    }
 
+    private fun initFabs() {
         mainFab = activity!!.findViewById(R.id.floatingActionButtonTrack)
         visitFab = activity!!.findViewById(R.id.visitActionButtonTrack)
         wishFab = activity!!.findViewById(R.id.wishActionButtonTrack)

@@ -85,14 +85,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:ellipsize="none"
             android:fontFamily="casual"
             android:maxLines="3"
             android:scrollHorizontally="false"
             android:text="@{track.introduction}"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/trackDocLink"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -119,6 +119,16 @@
             app:layout_constraintTop_toBottomOf="@+id/detailedHutIntro">
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/trackDocLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_web_link" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
