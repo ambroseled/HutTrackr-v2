@@ -66,13 +66,6 @@ class WishListFragment : ScopedFragment(), KodeinAware, WishListClickListener {
                 it.setHasFixedSize(true)
                 it.adapter =
                     WishRecyclerAdapter(huts, this@WishListFragment)
-//                it.addItemDecoration(
-//                    GridSpacingItemDecoration(
-//                        2,
-//                        20,
-//                        true
-//                    )
-//                )
             }
 
         })

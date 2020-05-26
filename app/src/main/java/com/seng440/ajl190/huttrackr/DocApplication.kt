@@ -41,7 +41,7 @@ class DocApplication: Application(), KodeinAware {
         bind<LastFetchRepository>() with singleton { LastFetchRepositoryImpl(instance()) }
         bind<AlertRepository>() with singleton { AlertRepositoryImpl(instance()) }
 
-        // View models
+        // View model factories
         bind() from provider { HutsListViewModelFactory(instance(), instance()) }
         bind() from provider { HutViewModelFactory(instance(), instance(), instance(), instance()) }
         bind() from provider { TracksListViewModelFactory(instance(), instance()) }

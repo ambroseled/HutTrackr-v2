@@ -80,12 +80,12 @@ class HutMapFragment : Fragment() {
                 symbolManager = SymbolManager(mapView, mapBoxMap, it)
                 symbolManager.iconAllowOverlap = true
                 symbolManager.iconIgnorePlacement = true
-                it.addImage("shaka", BitmapUtils.getBitmapFromDrawable(resources.getDrawable(R.drawable.ic_user))!!)
+                it.addImage("user", BitmapUtils.getBitmapFromDrawable(resources.getDrawable(R.drawable.ic_user))!!)
                 it.addImage("hut", BitmapUtils.getBitmapFromDrawable(resources.getDrawable(R.drawable.ic_home_green_24dp))!!)
                 symbolManager.create(
                     SymbolOptions()
                         .withLatLng(LatLng(originLocation.latitude, originLocation.longitude))
-                        .withIconImage("shaka")
+                        .withIconImage("user")
                         .withIconSize(.75f))
                 symbolManager.create(
                     SymbolOptions()

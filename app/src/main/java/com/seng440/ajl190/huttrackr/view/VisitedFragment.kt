@@ -51,11 +51,10 @@ class VisitedFragment : ScopedFragment(), KodeinAware, VisitClickListener {
     }
 
     private fun bindRecyclerList() = launch {
-        var gridSize = 1
         val returnedVisits = viewModel.visits.await()
         returnedVisits.observe(viewLifecycleOwner, Observer {visits ->
             recycler_view_visit.also {
-                it.layoutManager = GridLayoutManager(requireContext(), gridSize)
+                it.layoutManager = GridLayoutManager(requireContext(), 1)
                 it.setHasFixedSize(true)
                 it.adapter =
                     VisitRecyclerAdapter(visits, this@VisitedFragment)

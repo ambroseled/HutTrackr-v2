@@ -3,7 +3,7 @@ package com.seng440.ajl190.huttrackr.data.network
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-import com.seng440.ajl190.huttrackr.utils.NoConnectivityExpection
+import com.seng440.ajl190.huttrackr.utils.NoConnectivityException
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -16,7 +16,7 @@ class ConnectivityInterceptorImpl(
 
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!isOnline()) {
-            throw NoConnectivityExpection()
+            throw NoConnectivityException()
         }
         return chain.proceed(chain.request())
     }

@@ -2,4 +2,4 @@ package com.seng440.ajl190.huttrackr.utils
 
 import java.io.IOException
 
-class NoConnectivityExpection : IOException()
+class NoConnectivityException : IOException()

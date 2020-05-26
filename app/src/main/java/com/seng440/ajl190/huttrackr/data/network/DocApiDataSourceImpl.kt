@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.seng440.ajl190.huttrackr.data.model.*
-import com.seng440.ajl190.huttrackr.utils.NoConnectivityExpection
+import com.seng440.ajl190.huttrackr.utils.NoConnectivityException
 
 class DocApiDataSourceImpl(
     private val api: DocApiService
@@ -41,7 +41,7 @@ class DocApiDataSourceImpl(
             val fetchedHuts = api.getHutsAsync()
                 .await()
             _huts.postValue(fetchedHuts)
-        } catch (e: NoConnectivityExpection) {
+        } catch (e: NoConnectivityException) {
             Log.e("connectivity", "No internet connection", e)
         }
     }
@@ -51,7 +51,7 @@ class DocApiDataSourceImpl(
             val fetchedHut = api.getHutAsync(assetId)
                 .await()
             _hut.postValue(fetchedHut)
-        } catch (e: NoConnectivityExpection) {
+        } catch (e: NoConnectivityException) {
             Log.e("connectivity", "No internet connection", e)
         }
     }
@@ -61,7 +61,7 @@ class DocApiDataSourceImpl(
             val fetchedTracks = api.getTracksAsync()
                 .await()
             _tracks.postValue(fetchedTracks)
-        } catch (e: NoConnectivityExpection) {
+        } catch (e: NoConnectivityException) {
             Log.e("connectivity", "No internet connection", e)
         }
     }
@@ -71,7 +71,7 @@ class DocApiDataSourceImpl(
             val fetchedTrack = api.getTrackAsync(assetId)
                 .await()
             _track.postValue(fetchedTrack)
-        } catch (e: NoConnectivityExpection) {
+        } catch (e: NoConnectivityException) {
             Log.e("connectivity", "No internet connection", e)
         }
     }
@@ -81,7 +81,7 @@ class DocApiDataSourceImpl(
             val fetchedAlerts = api.getTrackAlertsAsync(assetId)
                 .await()
             _trackAlerts.postValue(fetchedAlerts)
-        } catch (e: NoConnectivityExpection) {
+        } catch (e: NoConnectivityException) {
             Log.e("connectivity", "No internet connection", e)
         }
     }
@@ -91,7 +91,7 @@ class DocApiDataSourceImpl(
             val fetchedAlerts = api.getHutAlertsAsync(assetId)
                 .await()
             _hutAlerts.postValue(fetchedAlerts)
-        } catch (e: NoConnectivityExpection) {
+        } catch (e: NoConnectivityException) {
             Log.e("connectivity", "No internet connection", e)
         }
     }

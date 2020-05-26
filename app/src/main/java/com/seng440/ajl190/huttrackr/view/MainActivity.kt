@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu to use in the action bar
         val inflater = menuInflater
         inflater.inflate(R.menu.action_bar_menu, menu)
         return super.onCreateOptionsMenu(menu)
