@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">HutTrackr</string>
     <string name="access_token">sk.eyJ1IjoiYWpsMTkwIiwiYSI6ImNrOXhyYWF6NTBuZmUzZG50MTUyaGdrb3gifQ.R84i59HagOTMUVfvV0VYhw</string>
-    <string name="google_maps_key" translatable="false">AIzaSyBWpUHUcDJZHUKrVf3qUiuLnD4ad40Mpew</string>
     <string name="detailsButton">Voir les détails</string>
     <string name="hutBookable">Cabane réservable</string>
     <string name="hutBunks">Couchettes de cabane</string>
