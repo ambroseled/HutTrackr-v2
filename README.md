@@ -10,3 +10,11 @@ HutTrackr is a mobile application that allows users to track and find Department
 - View user location and hut/track location on a map
 - Recieve alert notifcations for huts/tracks
 - View the current ambient temperature, if device has sensor
+
+## Development Enviroment
+Development was done on a Samsung A70 running Android 9 - Pie. Additional testing was done on an emulated Google Pixel 2 running API level 28.
+
+## Required Permissions
+- Fine location
+- Internet Access
+- Send SMS
