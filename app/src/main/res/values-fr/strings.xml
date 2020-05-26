@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HutTrackr</string>
+    <string name="access_token">sk.eyJ1IjoiYWpsMTkwIiwiYSI6ImNrOXhyYWF6NTBuZmUzZG50MTUyaGdrb3gifQ.R84i59HagOTMUVfvV0VYhw</string>
+    <string name="google_maps_key" translatable="false">AIzaSyBWpUHUcDJZHUKrVf3qUiuLnD4ad40Mpew</string>
+    <string name="detailsButton">Voir les détails</string>
+    <string name="hutBookable">Cabane réservable</string>
+    <string name="hutBunks">Couchettes de cabane</string>
+    <string name="hutCat">Catégorie de cabane</string>
+    <string name="hutIntro">Description de la cabane</string>
+    <string name="hutLink">Lien de cabane</string>
+    <string name="hutLocation">Emplacement de la cabane</string>
+    <string name="hutName">Nom de la cabane</string>
+    <string name="hutRegion">Région de refuge</string>
+    <string name="hutRoadEnd">Hut Region</string>
+    <string name="hutStatus">Statut de la cabane</string>
+    <string name="huts">Huttes</string>
+    <string name="map">Carte</string>
+    <string name="menu">Menu</string>
+    <string name="msgHint">Entrez un bref message</string>
+    <string name="phoneDialog">Envoyer à un ami</string>
+    <string name="phoneHint">Entrez un numéro de mobile</string>
+    <string name="phoneNum">Numéro de portable</string>
+    <string name="pref">Préférences</string>
+    <string name="sendButton">Envoyer</string>
+    <string name="smsMsg">Message</string>
+    <string name="tracks">Des pistes</string>
+    <string name="visit">A visité</string>
+    <string name="visitButton">Ajouter une visite</string>
+    <string name="wishlist">Liste de souhaits</string>
+</resources>
