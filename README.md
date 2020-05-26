@@ -12,7 +12,13 @@ HutTrackr is a mobile application that allows users to track and find Department
 - View the current ambient temperature, if device has sensor
 
 ## Development Enviroment
-Development was done on a Samsung A70 running Android 9 - Pie. Additional testing was done on an emulated Google Pixel 2 running API level 28.
+Development was done on a Samsung A70 running Android 9 - Pie. Additional testing was done on an emulated Google Pixel 2 running API level 28.  
+Development enviroment is below:  
+`Android Studio 3.5.3
+Build #AI-191.8026.42.35.6010548, built on November 15, 2019
+JRE: 1.8.0_202-release-1483-b49-5587405 x86_64
+JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
+macOS 10.14.6`
 
 ## Required Permissions
 - Fine location
